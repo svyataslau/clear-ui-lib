@@ -1,0 +1,62 @@
+# Source files (not needed in npm package)
+src/
+examples/
+demo-app/
+docs/
+
+# Development files
+.github/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test files
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+test/
+vitest.config.ts
+
+# Build tools
+rollup.config.js
+rollup.config.dev.js
+tsconfig.json
+tailwind.config.ts
+postcss.config.cjs
+biome.json
+.eslintrc.json
+
+# Development dependencies
+node_modules/
+package-lock.json
+
+# Documentation
+CONTRIBUTING.md
+FIXES_APPLIED.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Cache
+.cache/
+.parcel-cache/
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Coverage
+coverage/
+*.lcov
+.nyc_output/
+
+# Temporary files
+*.tmp
+*.temp

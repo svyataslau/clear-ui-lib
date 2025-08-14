@@ -29,13 +29,16 @@
   "license": "MIT",
   "files": [
     "dist",
-    "src/styles/index.css"
+    "src/styles/index.css",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c --watch",
     "demo": "cd demo-app && npm run dev",
     "prepublishOnly": "npm run build",
+    "postinstall": "npm run build",
     "type-check": "tsc --noEmit",
     "lint": "biome lint src",
     "format": "biome format src --write",
