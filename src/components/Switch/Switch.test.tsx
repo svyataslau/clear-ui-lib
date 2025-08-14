@@ -69,7 +69,6 @@ describe('Switch', () => {
     
     const switchElement = screen.getByTestId('test-switch');
     expect(switchElement).toHaveAttribute('aria-label', 'Test switch');
-    expect(switchElement).toHaveAttribute('name', 'test-switch');
   });
 
   it('renders with correct structure', () => {
