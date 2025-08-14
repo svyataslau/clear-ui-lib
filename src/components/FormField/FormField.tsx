@@ -1,6 +1,6 @@
 import { forwardRef, Children, cloneElement, isValidElement } from 'react';
 import type { ReactNode } from 'react';
-import { cn } from '../../utils/classNames';
+import { clsx } from 'clsx';
 
 export interface FormFieldProps {
   label?: string;
@@ -33,7 +33,7 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
     });
 
     return (
-      <div ref={ref} className={cn('space-y-2', className)}>
+      <div ref={ref} className={clsx('space-y-2', className)}>
         {label && (
           <label 
             htmlFor={fieldId}

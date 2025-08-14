@@ -1,5 +1,5 @@
 import type { CirclePlateProps } from '../../types';
-import { cn } from '../../utils/classNames';
+import { clsx } from 'clsx';
 
 const sizeClasses = {
   sm: 'w-16 h-16',
@@ -9,10 +9,8 @@ const sizeClasses = {
 };
 
 const variantClasses = {
-  primary:
-    'bg-neumorphism-background shadow-neumorphism-card transition-all duration-200',
-  concave:
-    'bg-neumorphism-classic shadow-neumorphism-concave transition-all duration-200',
+  primary: 'bg-neumorphism-background shadow-neumorphism-card transition-all duration-200',
+  concave: 'bg-neumorphism-classic shadow-neumorphism-concave transition-all duration-200',
 };
 
 export function CirclePlate({
@@ -24,7 +22,7 @@ export function CirclePlate({
 }: CirclePlateProps) {
   return (
     <div
-      className={cn(
+      className={clsx(
         'inline-flex items-center justify-center font-medium rounded-full transition-all duration-200',
         sizeClasses[size],
         variantClasses[variant],

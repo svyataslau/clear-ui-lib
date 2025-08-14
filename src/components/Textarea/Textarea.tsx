@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import type { TextareaProps } from '../../types';
-import { cn } from '../../utils/classNames';
+import { clsx } from 'clsx';
 
 const sizeClasses = {
   sm: 'px-3 py-1.5 text-sm',
@@ -39,7 +39,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         onChange={handleChange}
         disabled={disabled}
         rows={rows}
-        className={cn(
+        className={clsx(
           'w-full rounded-xl bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed',
           sizeClasses[size],
           error && 'shadow-[inset_6px_6px_4px_#ffebee,inset_-6px_-6px_4px_#ffffff]',

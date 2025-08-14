@@ -1,5 +1,5 @@
 import type { ButtonProps } from '../../types';
-import { cn } from '../../utils/classNames';
+import { clsx } from 'clsx';
 
 const sizeClasses = {
   sm: 'px-3 py-1.5 text-sm',
@@ -9,14 +9,10 @@ const sizeClasses = {
 };
 
 const variantClasses = {
-  primary:
-    'bg-neumorphism-background text-gray-700 shadow-neumorphism-card hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white transition-all duration-200',
-  ghost:
-    'bg-transparent text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white transition-all duration-200',
-  concave:
-    'bg-neumorphism-classic text-gray-700 shadow-neumorphism-concave hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white hover:shadow-[inset_-6px_-6px_4px_#d8b4fe,inset_6px_6px_4px_#ffffff] transition-all duration-200',
-  gradient:
-    'cssbuttons-io',
+  primary: 'bg-neumorphism-background text-gray-700 shadow-neumorphism-card hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white transition-all duration-200',
+  ghost: 'bg-transparent text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white transition-all duration-200',
+  concave: 'bg-neumorphism-classic text-gray-700 shadow-neumorphism-concave hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white hover:shadow-[inset_-6px_-6px_4px_#d8b4fe,inset_6px_6px_4px_#ffffff] transition-all duration-200',
+  gradient: 'cssbuttons-io',
 };
 
 export function Button({
@@ -37,7 +33,7 @@ export function Button({
         type={type}
         disabled={disabled}
         onClick={onClick}
-        className={cn(
+        className={clsx(
           variantClasses[variant],
           disabled && 'opacity-50 cursor-not-allowed',
           className
@@ -54,7 +50,7 @@ export function Button({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={cn(
+      className={clsx(
         'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed',
         sizeClasses[size],
         disabled ? 'opacity-50 cursor-not-allowed' : variantClasses[variant],

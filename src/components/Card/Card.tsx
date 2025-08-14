@@ -1,5 +1,5 @@
 import type { CardProps } from '../../types';
-import { cn } from '../../utils/classNames';
+import { clsx } from 'clsx';
 
 const variantClasses = {
   default: 'bg-neumorphism-background shadow-neumorphism-card',
@@ -26,7 +26,7 @@ export function Card({
 }: CardProps) {
   return (
     <div
-      className={cn(
+      className={clsx(
         'transition-all duration-200',
         rounded ? 'rounded-full' : 'rounded-2xl',
         variantClasses[variant],

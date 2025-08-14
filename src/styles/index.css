@@ -48,21 +48,69 @@
   }
   
   /* Custom Input Styles */
-  .input {
+  .input-base {
+    width: 100%;
+    background: rgb(236 240 243);
+    color: #374151;
+    transition: all 0.2s;
+    outline: none;
+    border: none;
+  }
+  
+  .input-size-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .input-size-md {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .input-size-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+  }
+  
+  .input-size-xl {
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+  }
+  
+  .input-rounded {
+    border-radius: 9999px;
+  }
+  
+  .input-default {
+    border-radius: 0.75rem;
+  }
+  
+  .input-shadow-default {
+    box-shadow: inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff;
+  }
+  
+  .input-shadow-error {
+    box-shadow: inset 6px 6px 4px #ffebee, inset -6px -6px 4px #ffffff;
+  }
+  
+  .input-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .input-placeholder {
+    color: #6b7280;
+  }
+  
+  .input-neumorphic {
     max-width: 200px;
     min-height: 40px;
     padding: 10px;
-    font-family: 'Courier New', Courier, monospace;
-    outline: none;
-    background: rgb(236 240 243);
     box-shadow: 6px 6px 4px #d1d9e6, -6px -6px 4px #ffffff;
-    border: none;
     border-radius: 10px;
-    transition: all 0.5s;
   }
   
-  .input:focus {
-    background: rgb(236 240 243);
+  .input-neumorphic:focus {
     box-shadow: inset 6px 6px 4px #d1d9e6, inset -6px -6px 4px #ffffff;
   }
   
@@ -117,13 +165,27 @@
     padding-left: 10px;
   }
   
+  .toggle-checked {
+    left: 65px;
+    background: linear-gradient(308deg, #ffffff, #d2d2d2);
+  }
+  
   .led {
     width: 10px;
     height: 10px;
-    background: grey;
+    background: #808080;
     border-radius: 50%;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out;
+  }
+  
+  .led-checked {
+    background: #a855f7;
+    box-shadow: 0 0 15px 4px #a855f7;
+  }
+  
+  .led-disabled {
+    background: #808080;
   }
   
   .toggle-checkbox:checked + .switch .toggle {
@@ -133,8 +195,8 @@
   }
   
   .toggle-checkbox:checked + .switch .led {
-    background: yellow;
-    box-shadow: 0 0 15px 4px yellow;
+    background: #a855f7;
+    box-shadow: 0 0 15px 4px #a855f7;
   }
   
   .switch:hover .toggle {
@@ -197,10 +259,13 @@
   .cssbuttons-io:active {
     transform: scale(0.95);
   }
-}
-
-/* Дополнительные utility классы для совместимости */
-@layer utilities {
-  .bg-neumorphism-light { background-color: #ffffff; }
-  .bg-neumorphism-dark { background-color: #d1d9e6; }
+  
+  /* Utility classes */
+  .neumorphic-light {
+    background-color: #ffffff;
+  }
+  
+  .neumorphic-dark {
+    background-color: #d1d9e6;
+  }
 }

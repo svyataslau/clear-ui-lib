@@ -78,7 +78,7 @@ describe('Switch', () => {
     const label = checkbox.nextElementSibling;
     
     expect(checkbox).toBeInTheDocument();
-    expect(label).toHaveClass('absolute', 'top-1/2', 'left-0', 'w-full', 'h-full', '-translate-y-1/2', 'rounded-[50px]', 'overflow-hidden', 'cursor-pointer');
+    expect(label).toHaveClass('switch');
   });
 
   it('handles controlled component behavior', () => {

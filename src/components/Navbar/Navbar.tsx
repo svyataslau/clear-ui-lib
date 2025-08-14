@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { NavbarProps } from '../../types';
-import { cn } from '../../utils/classNames';
+import { clsx } from 'clsx';
 
 export function Navbar({
   logo,
@@ -13,7 +13,7 @@ export function Navbar({
 
   return (
     <nav
-      className={cn(
+      className={clsx(
         'bg-neumorphism-background shadow-neumorphism-card sticky top-0 z-40',
         className
       )}
@@ -31,7 +31,7 @@ export function Navbar({
                 <a
                   key={index}
                   href={link.href}
-                  className={cn(
+                  className={clsx(
                     'px-3 py-2 rounded-md text-sm font-medium transition-all duration-200',
                     link.active
                       ? 'bg-gradient-to-r from-purple-400 to-purple-600 text-white'
@@ -98,7 +98,7 @@ export function Navbar({
               <a
                 key={index}
                 href={link.href}
-                className={cn(
+                className={clsx(
                   'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200',
                   link.active
                     ? 'bg-gradient-to-r from-purple-400 to-purple-600 text-white'

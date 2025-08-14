@@ -1,5 +1,4 @@
 import React from 'react';
-import { NeumorphicGlobalStyle } from '../../styles/neumorphic';
 
 interface NeumorphicProviderProps {
   children: React.ReactNode;
@@ -8,7 +7,6 @@ interface NeumorphicProviderProps {
 export function NeumorphicProvider({ children }: NeumorphicProviderProps) {
   return (
     <>
-      <NeumorphicGlobalStyle />
       {children}
     </>
   );

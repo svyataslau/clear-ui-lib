@@ -1,6 +1,6 @@
 import React from 'react';
 import type { AvatarProps } from '../../types';
-import { cn } from '../../utils/classNames';
+import { clsx } from 'clsx';
 
 const sizeClasses = {
   sm: 'w-8 h-8 text-sm',
@@ -39,7 +39,7 @@ export function Avatar({
 
   return (
     <div
-      className={cn(
+      className={clsx(
         'inline-flex items-center justify-center rounded-full bg-neumorphism-background text-gray-600 font-medium overflow-hidden shadow-neumorphism',
         sizeClasses[size],
         className

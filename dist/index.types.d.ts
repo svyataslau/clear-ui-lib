@@ -1,4 +1,3 @@
-// Components
 export { Avatar } from './components/Avatar';
 export { Button } from './components/Button';
 export { Card } from './components/Card';
@@ -11,40 +10,8 @@ export { Textarea } from './components/Textarea';
 export { Typography } from './components/Typography';
 export { FormField } from './components/FormField';
 export { NeumorphicProvider } from './components/NeumorphicProvider';
-
-
 export type { ComponentDoc } from './docs';
-// Documentation
-export {
-  componentDocs,
-  DocGenerator,
-  getAllComponents,
-  getComponent,
-  registerComponent,
-} from './docs';
-// Types
-export type {
-  AvatarProps,
-  BaseComponentProps,
-  ButtonProps,
-  CardProps,
-  CirclePlateProps,
-  Color,
-  InputProps,
-  ModalProps,
-  NavbarProps,
-  Size,
-  SwitchProps,
-  TextareaProps,
-  TypographyProps,
-  Variant,
-  ThemeConfig,
-  FormFieldProps,
-} from './types';
-// Utils
+export { componentDocs, DocGenerator, getAllComponents, getComponent, registerComponent, } from './docs';
+export type { AvatarProps, BaseComponentProps, ButtonProps, CardProps, CirclePlateProps, Color, InputProps, ModalProps, NavbarProps, Size, SwitchProps, TextareaProps, TypographyProps, Variant, ThemeConfig, FormFieldProps, } from './types';
 export { ThemeProvider, useTheme, defaultTheme } from './context/ThemeContext';
-
-// Styles
-import './styles/index.css';
-
-
+//# sourceMappingURL=index.types.d.ts.map

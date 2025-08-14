@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import type { ModalProps } from '../../types';
-import { cn } from '../../utils/classNames';
+import { clsx } from 'clsx';
 
 const sizeClasses = {
   sm: 'max-w-md',
@@ -48,7 +48,7 @@ export function Modal({
 
       {/* Modal */}
       <div
-        className={cn(
+        className={clsx(
           'relative bg-neumorphism-background rounded-2xl w-full mx-4 max-h-[90vh] overflow-y-auto',
           sizeClasses[size],
           className

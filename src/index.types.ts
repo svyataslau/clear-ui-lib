@@ -12,7 +12,6 @@ export { Typography } from './components/Typography';
 export { FormField } from './components/FormField';
 export { NeumorphicProvider } from './components/NeumorphicProvider';
 
-
 export type { ComponentDoc } from './docs';
 // Documentation
 export {
@@ -43,8 +42,3 @@ export type {
 } from './types';
 // Utils
 export { ThemeProvider, useTheme, defaultTheme } from './context/ThemeContext';
-
-// Styles
-import './styles/index.css';
-
-

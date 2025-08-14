@@ -1,6 +1,6 @@
 import type React from 'react';
 import type { TypographyProps } from '../../types';
-import { cn } from '../../utils/classNames';
+import { clsx } from 'clsx';
 
 const variantClasses = {
   h1: 'text-4xl font-bold',
@@ -52,7 +52,7 @@ export function Typography({
 
   return (
     <Element
-      className={cn(
+      className={clsx(
         variantClasses[variant],
         colorClasses[color],
         weight && weightClasses[weight],
