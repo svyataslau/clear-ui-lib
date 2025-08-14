@@ -81,12 +81,13 @@ const sizeClasses$3 = {
     'circle-lg': 'px-4 py-2 text-base',
     'circle-xl': 'px-4 py-2 text-base',
 };
-function Input({ type = 'text', placeholder, value, onChange, disabled = false, error = false, size = 'md', rounded = false, neumorphic = false, className, ...props }) {
+const Input = React.forwardRef(({ type = 'text', placeholder, value, onChange, disabled = false, error = false, size = 'md', rounded = false, neumorphic = false, className, ...props }, ref) => {
     const handleChange = (e) => {
         onChange?.(e.target.value);
     };
-    return (jsxRuntime.jsx("input", { type: type, placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, className: cn('w-full bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed', rounded ? 'rounded-full' : 'rounded-xl', neumorphic && 'input', sizeClasses$3[size], error && 'shadow-[inset_6px_6px_4px_#ffebee,inset_-6px_-6px_4px_#ffffff]', className), ...props }));
-}
+    return (jsxRuntime.jsx("input", { ref: ref, type: type, placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, className: cn('w-full bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed', rounded ? 'rounded-full' : 'rounded-xl', neumorphic && 'input', sizeClasses$3[size], error && 'shadow-[inset_6px_6px_4px_#ffebee,inset_-6px_-6px_4px_#ffffff]', className), ...props }));
+});
+Input.displayName = 'Input';
 
 const sizeClasses$2 = {
     sm: 'max-w-md',
@@ -124,11 +125,12 @@ function Navbar({ logo, links = [], actions, className, ...props }) {
                                 : 'text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white'), onClick: () => setIsMobileMenuOpen(false), children: link.label }, index))), actions && (jsxRuntime.jsx("div", { className: "pt-4 pb-3 border-t border-gray-200", children: jsxRuntime.jsx("div", { className: "flex items-center space-x-4", children: actions }) }))] }) }))] }));
 }
 
-const Switch = React.forwardRef(({ checked = false, onChange, disabled = false, className = '', ...props }, ref) => {
+const Switch = React.forwardRef(({ checked = false, onChange, disabled = false, className = '', id, ...props }, ref) => {
     const handleChange = (e) => {
         onChange?.(e.target.checked);
     };
-    return (jsxRuntime.jsxs("div", { className: cn('relative w-[150px] h-[60px] bg-[rgb(236_240_243)] rounded-[50px]', 'shadow-[inset_6px_6px_4px_#d1d9e6,inset_-6px_-6px_4px_#ffffff]', className), ...props, children: [jsxRuntime.jsx("input", { ref: ref, type: "checkbox", className: "hidden", checked: checked, onChange: handleChange, disabled: disabled }), jsxRuntime.jsx("label", { className: "absolute top-1/2 left-0 w-full h-full -translate-y-1/2 rounded-[50px] overflow-hidden cursor-pointer", children: jsxRuntime.jsx("div", { className: cn('absolute w-[80px] h-[50px] rounded-[50px] top-[5px] left-[5px]', 'bg-gradient-to-br from-[#d2d2d2] to-[#ffffff]', 'shadow-[-3px_-3px_4px_#ffffff,3px_3px_4px_#c8c8c8]', 'transition-all duration-300 ease-in-out', 'flex items-center justify-start pl-[10px]', checked && 'left-[65px] bg-gradient-to-tl from-[#ffffff] to-[#d2d2d2]'), children: jsxRuntime.jsx("div", { className: cn('w-[10px] h-[10px] rounded-full transition-all duration-300 ease-in-out', disabled
+    const inputId = id || `switch-${Math.random().toString(36).substr(2, 9)}`;
+    return (jsxRuntime.jsxs("div", { className: cn('relative w-[150px] h-[60px] bg-[rgb(236_240_243)] rounded-[50px]', 'shadow-[inset_6px_6px_4px_#d1d9e6,inset_-6px_-6px_4px_#ffffff]', className), ...props, children: [jsxRuntime.jsx("input", { ref: ref, id: inputId, type: "checkbox", className: "hidden", checked: checked, onChange: handleChange, disabled: disabled }), jsxRuntime.jsx("label", { htmlFor: inputId, className: "absolute top-1/2 left-0 w-full h-full -translate-y-1/2 rounded-[50px] overflow-hidden cursor-pointer", children: jsxRuntime.jsx("div", { className: cn('absolute w-[80px] h-[50px] rounded-[50px] top-[5px] left-[5px]', 'bg-gradient-to-br from-[#d2d2d2] to-[#ffffff]', 'shadow-[-3px_-3px_4px_#ffffff,3px_3px_4px_#c8c8c8]', 'transition-all duration-300 ease-in-out', 'flex items-center justify-start pl-[10px]', checked && 'left-[65px] bg-gradient-to-tl from-[#ffffff] to-[#d2d2d2]'), children: jsxRuntime.jsx("div", { className: cn('w-[10px] h-[10px] rounded-full transition-all duration-300 ease-in-out', disabled
                             ? 'bg-[#808080]'
                             : checked
                                 ? 'bg-[#a855f7] shadow-[0_0_15px_4px_#a855f7]'
@@ -159,12 +161,13 @@ const sizeClasses = {
     'circle-lg': 'px-4 py-2 text-base',
     'circle-xl': 'px-4 py-2 text-base',
 };
-function Textarea({ placeholder, value, onChange, disabled = false, error = false, rows = 4, size = 'md', className, ...props }) {
+const Textarea = React.forwardRef(({ placeholder, value, onChange, disabled = false, error = false, rows = 4, size = 'md', className, ...props }, ref) => {
     const handleChange = (e) => {
         onChange?.(e.target.value);
     };
-    return (jsxRuntime.jsx("textarea", { placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, rows: rows, className: cn('w-full rounded-xl bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed', sizeClasses[size], error && 'shadow-[inset_6px_6px_4px_#ffebee,inset_-6px_-6px_4px_#ffffff]', className), ...props }));
-}
+    return (jsxRuntime.jsx("textarea", { ref: ref, placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, rows: rows, className: cn('w-full rounded-xl bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed', sizeClasses[size], error && 'shadow-[inset_6px_6px_4px_#ffebee,inset_-6px_-6px_4px_#ffffff]', className), ...props }));
+});
+Textarea.displayName = 'Textarea';
 
 const variantClasses = {
     h1: 'text-4xl font-bold',
@@ -204,6 +207,11 @@ function Typography({ children, variant = 'body', color = 'primary', weight, cla
     const Element = variantElements[variant];
     return (jsxRuntime.jsx(Element, { className: cn(variantClasses[variant], colorClasses[color], weight && weightClasses[weight], className), ...props, children: children }));
 }
+
+const FormField = React.forwardRef(({ label, error, required = false, className, children, htmlFor }, ref) => {
+    return (jsxRuntime.jsxs("div", { ref: ref, className: cn('space-y-2', className), children: [label && (jsxRuntime.jsxs("label", { htmlFor: htmlFor, className: "block text-sm font-medium text-gray-700", children: [label, required && jsxRuntime.jsx("span", { className: "text-red-500 ml-1", children: "*" })] })), children, error && (jsxRuntime.jsx("p", { className: "text-sm text-red-600", children: error }))] }));
+});
+FormField.displayName = 'FormField';
 
 // Function to get component examples
 function getButtonExample() {
@@ -646,6 +654,7 @@ exports.Button = Button;
 exports.Card = Card;
 exports.CirclePlate = CirclePlate;
 exports.DocGenerator = DocGenerator;
+exports.FormField = FormField;
 exports.Input = Input;
 exports.Modal = Modal;
 exports.Navbar = Navbar;

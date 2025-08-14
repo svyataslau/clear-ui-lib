@@ -100,3 +100,12 @@ export interface CirclePlateProps extends BaseComponentProps, HTMLAttributes<HTM
   variant?: 'primary' | 'concave';
   size?: Size;
 }
+
+export interface FormFieldProps {
+  label?: string;
+  error?: string;
+  required?: boolean;
+  className?: string;
+  children: ReactNode;
+  htmlFor?: string;
+}

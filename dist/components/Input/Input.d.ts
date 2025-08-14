@@ -1,3 +1,3 @@
 import type { InputProps } from '../../types';
-export declare function Input({ type, placeholder, value, onChange, disabled, error, size, rounded, neumorphic, className, ...props }: InputProps): import("react/jsx-runtime").JSX.Element;
+export declare const Input: import("react").ForwardRefExoticComponent<InputProps & import("react").RefAttributes<HTMLInputElement>>;
 //# sourceMappingURL=Input.d.ts.map

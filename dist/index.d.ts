@@ -71,6 +71,14 @@ interface CirclePlateProps extends BaseComponentProps, HTMLAttributes<HTMLDivEle
     variant?: 'primary' | 'concave';
     size?: Size;
 }
+interface FormFieldProps$1 {
+    label?: string;
+    error?: string;
+    required?: boolean;
+    className?: string;
+    children: ReactNode;
+    htmlFor?: string;
+}
 
 declare function Avatar({ src, alt, size, fallback, className, ...props }: AvatarProps): react_jsx_runtime.JSX.Element;
 
@@ -78,7 +86,7 @@ declare function Button({ children, variant, size, disabled, onClick, type, clas
 
 declare function Card({ children, variant, padding, rounded, className, ...props }: CardProps): react_jsx_runtime.JSX.Element;
 
-declare function Input({ type, placeholder, value, onChange, disabled, error, size, rounded, neumorphic, className, ...props }: InputProps): react_jsx_runtime.JSX.Element;
+declare const Input: react.ForwardRefExoticComponent<InputProps & react.RefAttributes<HTMLInputElement>>;
 
 declare function Modal({ children, isOpen, onClose, title, size, className, ...props }: ModalProps): react_jsx_runtime.JSX.Element | null;
 
@@ -88,9 +96,19 @@ declare const Switch: react.ForwardRefExoticComponent<SwitchProps & react.RefAtt
 
 declare function CirclePlate({ children, variant, size, className, ...props }: CirclePlateProps): react_jsx_runtime.JSX.Element;
 
-declare function Textarea({ placeholder, value, onChange, disabled, error, rows, size, className, ...props }: TextareaProps): react_jsx_runtime.JSX.Element;
+declare const Textarea: react.ForwardRefExoticComponent<TextareaProps & react.RefAttributes<HTMLTextAreaElement>>;
 
 declare function Typography({ children, variant, color, weight, className, ...props }: TypographyProps): react_jsx_runtime.JSX.Element;
+
+interface FormFieldProps {
+    label?: string;
+    error?: string;
+    required?: boolean;
+    className?: string;
+    children: ReactNode;
+    htmlFor?: string;
+}
+declare const FormField: react.ForwardRefExoticComponent<FormFieldProps & react.RefAttributes<HTMLDivElement>>;
 
 interface ComponentDoc$1 {
     name: string;
@@ -147,4 +165,4 @@ interface ThemeProviderProps {
 declare function ThemeProvider({ children, initialTheme }: ThemeProviderProps): react_jsx_runtime.JSX.Element;
 declare function useTheme(): ThemeContextType;
 
-export { Avatar, AvatarProps, BaseComponentProps, Button, ButtonProps, Card, CardProps, CirclePlate, CirclePlateProps, Color, ComponentDoc$1 as ComponentDoc, DocGenerator, Input, InputProps, Modal, ModalProps, Navbar, NavbarProps, Size, Switch, SwitchProps, Textarea, TextareaProps, ThemeConfig$1 as ThemeConfig, ThemeProvider, Typography, TypographyProps, Variant, cn, componentDocs, defaultTheme, getAllComponents, getComponent, registerComponent, useTheme };
+export { Avatar, AvatarProps, BaseComponentProps, Button, ButtonProps, Card, CardProps, CirclePlate, CirclePlateProps, Color, ComponentDoc$1 as ComponentDoc, DocGenerator, FormField, FormFieldProps$1 as FormFieldProps, Input, InputProps, Modal, ModalProps, Navbar, NavbarProps, Size, Switch, SwitchProps, Textarea, TextareaProps, ThemeConfig$1 as ThemeConfig, ThemeProvider, Typography, TypographyProps, Variant, cn, componentDocs, defaultTheme, getAllComponents, getComponent, registerComponent, useTheme };

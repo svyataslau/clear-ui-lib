@@ -9,6 +9,7 @@ export { Switch } from './components/Switch';
 export { CirclePlate } from './components/CirclePlate';
 export { Textarea } from './components/Textarea';
 export { Typography } from './components/Typography';
+export { FormField } from './components/FormField';
 
 
 export type { ComponentDoc } from './docs';
@@ -37,6 +38,7 @@ export type {
   TypographyProps,
   Variant,
   ThemeConfig,
+  FormFieldProps,
 } from './types';
 // Utils
 export { cn } from './utils/classNames';
