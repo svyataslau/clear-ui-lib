@@ -4,7 +4,6 @@ import typescript from '@rollup/plugin-typescript';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { dts } from 'rollup-plugin-dts';
 import { copyFileSync, mkdirSync } from 'fs';
-import terser from '@rollup/plugin-terser';
 
 export default [
   {
@@ -26,12 +25,6 @@ export default [
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
-      process.env.NODE_ENV === 'production' && terser({
-        compress: {
-          drop_console: true,
-          drop_debugger: true,
-        },
-      }),
       {
         name: 'copy-css',
         writeBundle() {
@@ -44,7 +37,7 @@ export default [
           }
         },
       },
-    ].filter(Boolean),
+    ],
     external: ['react', 'react-dom'],
   },
   {
