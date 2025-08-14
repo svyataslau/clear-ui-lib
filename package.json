@@ -1,12 +1,19 @@
 {
   "name": "@clear/ui",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "type": "module",
   "description": "A modern React UI library with neumorphic design, built with TypeScript and Tailwind CSS.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
-  "style": "dist/index.css",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/index.css"
+  },
   "keywords": [
     "react",
     "typescript",
@@ -29,21 +36,11 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "build:prod": "npm run clean && rollup -c --environment NODE_ENV:production",
-    "dev": "rollup -c rollup.config.dev.js --watch",
-    "demo": "cd demo-app && npm run dev",
+    "dev": "rollup -c --watch",
+    "prepublishOnly": "npm run build",
     "type-check": "tsc --noEmit",
     "lint": "biome lint src",
-    "format": "biome format src --write",
-    "check": "biome check src",
-    "check:fix": "biome check src --write",
-    "test": "vitest",
-    "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest --watch",
-    "clean": "rm -rf dist",
-    "prepublishOnly": "npm run build:prod && npm run test:run",
-    "prepack": "npm run build:prod"
+    "format": "biome format src --write"
   },
 
   "peerDependencies": {
