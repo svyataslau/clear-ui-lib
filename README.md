@@ -40,24 +40,27 @@ pnpm add @clear/ui
 ### Quick Start
 
 ```tsx
-import { Button, Card, Input, Typography } from '@clear/ui';
-import '@clear/ui/dist/index.css'; // Import neumorphic styles
+import { Button, Card, Input, Typography, NeumorphicProvider } from '@clear/ui';
 
 function App() {
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
-      <Typography variant="h1" className="mb-6">Welcome to Clear UI</Typography>
-      <Card className="max-w-md">
-        <Typography variant="h3" className="mb-4">Login Form</Typography>
-        <div className="space-y-4">
-          <Input placeholder="Enter your email" type="email" />
-          <Input placeholder="Enter your password" type="password" />
-          <Button variant="primary" className="w-full">Sign In</Button>
-        </div>
-      </Card>
-    </div>
+    <NeumorphicProvider>
+      <div className="p-8 bg-gray-50 min-h-screen">
+        <Typography variant="h1" className="mb-6">Welcome to Clear UI</Typography>
+        <Card className="max-w-md">
+          <Typography variant="h3" className="mb-4">Login Form</Typography>
+          <div className="space-y-4">
+            <Input placeholder="Enter your email" type="email" />
+            <Input placeholder="Enter your password" type="password" />
+            <Button variant="primary" className="w-full">Sign In</Button>
+          </div>
+        </Card>
+      </div>
+    </NeumorphicProvider>
   );
 }
+
+
 ```
 
 ### Setup Tailwind CSS

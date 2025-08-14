@@ -110,6 +110,11 @@ interface FormFieldProps {
 }
 declare const FormField: react.ForwardRefExoticComponent<FormFieldProps & react.RefAttributes<HTMLDivElement>>;
 
+interface NeumorphicProviderProps {
+    children: react__default.ReactNode;
+}
+declare function NeumorphicProvider({ children }: NeumorphicProviderProps): react_jsx_runtime.JSX.Element;
+
 interface ComponentDoc$1 {
     name: string;
     description: string;
@@ -165,4 +170,4 @@ interface ThemeProviderProps {
 declare function ThemeProvider({ children, initialTheme }: ThemeProviderProps): react_jsx_runtime.JSX.Element;
 declare function useTheme(): ThemeContextType;
 
-export { Avatar, AvatarProps, BaseComponentProps, Button, ButtonProps, Card, CardProps, CirclePlate, CirclePlateProps, Color, ComponentDoc$1 as ComponentDoc, DocGenerator, FormField, FormFieldProps$1 as FormFieldProps, Input, InputProps, Modal, ModalProps, Navbar, NavbarProps, Size, Switch, SwitchProps, Textarea, TextareaProps, ThemeConfig$1 as ThemeConfig, ThemeProvider, Typography, TypographyProps, Variant, cn, componentDocs, defaultTheme, getAllComponents, getComponent, registerComponent, useTheme };
+export { Avatar, AvatarProps, BaseComponentProps, Button, ButtonProps, Card, CardProps, CirclePlate, CirclePlateProps, Color, ComponentDoc$1 as ComponentDoc, DocGenerator, FormField, FormFieldProps$1 as FormFieldProps, Input, InputProps, Modal, ModalProps, Navbar, NavbarProps, NeumorphicProvider, Size, Switch, SwitchProps, Textarea, TextareaProps, ThemeConfig$1 as ThemeConfig, ThemeProvider, Typography, TypographyProps, Variant, cn, componentDocs, defaultTheme, getAllComponents, getComponent, registerComponent, useTheme };

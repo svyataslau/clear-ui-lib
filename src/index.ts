@@ -10,6 +10,7 @@ export { CirclePlate } from './components/CirclePlate';
 export { Textarea } from './components/Textarea';
 export { Typography } from './components/Typography';
 export { FormField } from './components/FormField';
+export { NeumorphicProvider } from './components/NeumorphicProvider';
 
 
 export type { ComponentDoc } from './docs';

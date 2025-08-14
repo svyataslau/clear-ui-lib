@@ -5,7 +5,23 @@
 ## Установка
 
 ```bash
-npm install react-hook-form
+npm install @clear/ui react-hook-form
+```
+
+## Styled Components
+
+**Используйте NeumorphicProvider для подключения стилей!** Оберните ваше приложение в `NeumorphicProvider` для автоматического подключения всех neumorphic стилей.
+
+```tsx
+import { NeumorphicProvider } from '@clear/ui';
+
+function App() {
+  return (
+    <NeumorphicProvider>
+      {/* Your app content */}
+    </NeumorphicProvider>
+  );
+}
 ```
 
 ## Основные компоненты

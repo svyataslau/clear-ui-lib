@@ -1,16 +1,55 @@
 import { forwardRef } from 'react';
 import type { InputProps } from '../../types';
-import { cn } from '../../utils/classNames';
+import styled from 'styled-components';
 
-const sizeClasses = {
-  sm: 'px-3 py-1.5 text-sm',
-  md: 'px-4 py-2 text-base',
-  lg: 'px-6 py-3 text-lg',
-  xl: 'px-8 py-4 text-xl',
-  circle: 'px-4 py-2 text-base',
-  'circle-lg': 'px-4 py-2 text-base',
-  'circle-xl': 'px-4 py-2 text-base',
-};
+const StyledInput = styled.input<{
+  $size: string;
+  $rounded: boolean;
+  $neumorphic: boolean;
+  $error: boolean;
+}>`
+  width: 100%;
+  background: rgb(236 240 243);
+  color: #374151;
+  transition: all 0.2s;
+  outline: none;
+  box-shadow: ${props => props.$error 
+    ? 'inset 6px 6px 4px #ffebee, inset -6px -6px 4px #ffffff'
+    : 'inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff'};
+  border: none;
+  border-radius: ${props => props.$rounded ? '9999px' : '0.75rem'};
+  
+  ${props => {
+    switch (props.$size) {
+      case 'sm': return 'padding: 0.375rem 0.75rem; font-size: 0.875rem;';
+      case 'md': return 'padding: 0.5rem 1rem; font-size: 1rem;';
+      case 'lg': return 'padding: 0.75rem 1.5rem; font-size: 1.125rem;';
+      case 'xl': return 'padding: 1rem 2rem; font-size: 1.25rem;';
+      default: return 'padding: 0.5rem 1rem; font-size: 1rem;';
+    }
+  }}
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: #6b7280;
+  }
+
+  ${props => props.$neumorphic && `
+    max-width: 200px;
+    min-height: 40px;
+    padding: 10px;
+    box-shadow: 6px 6px 4px #d1d9e6, -6px -6px 4px #ffffff;
+    border-radius: 10px;
+
+    &:focus {
+      box-shadow: inset 6px 6px 4px #d1d9e6, inset -6px -6px 4px #ffffff;
+    }
+  `}
+`;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({
@@ -28,27 +67,24 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   }, ref) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
-        // Передаем событие напрямую - React Hook Form сам его обработает
+        // Pass event directly - React Hook Form will handle it
         (onChange as any)(e);
       }
     };
 
     return (
-      <input
+      <StyledInput
         ref={ref}
         type={type}
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
         disabled={disabled}
-        className={cn(
-          'w-full bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed',
-          rounded ? 'rounded-full' : 'rounded-xl',
-          neumorphic && 'input',
-          sizeClasses[size],
-          error && 'shadow-[inset_6px_6px_4px_#ffebee,inset_-6px_-6px_4px_#ffffff]',
-          className
-        )}
+        $size={size}
+        $rounded={rounded}
+        $neumorphic={neumorphic}
+        $error={error}
+        className={className}
         {...props}
       />
     );

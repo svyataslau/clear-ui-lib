@@ -3,7 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { dts } from 'rollup-plugin-dts';
-import { copyFileSync, mkdirSync } from 'fs';
+
 
 export default [
   {
@@ -25,18 +25,6 @@ export default [
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
-      {
-        name: 'copy-css',
-        writeBundle() {
-          // Copy CSS file to dist
-          try {
-            mkdirSync('dist', { recursive: true });
-            copyFileSync('src/styles/index.css', 'dist/index.css');
-          } catch (error) {
-            console.warn('Could not copy CSS file:', error.message);
-          }
-        },
-      },
     ],
     external: ['react', 'react-dom'],
   },

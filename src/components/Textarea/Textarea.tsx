@@ -26,7 +26,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   }, ref) => {
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       if (onChange) {
-        // Передаем событие напрямую - React Hook Form сам его обработает
+        // Pass event directly - React Hook Form will handle it
         (onChange as any)(e);
       }
     };
