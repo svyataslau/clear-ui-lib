@@ -27,7 +27,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     ...props
   }, ref) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange?.(e.target.value);
+      if (onChange) {
+        // Передаем событие напрямую - React Hook Form сам его обработает
+        (onChange as any)(e);
+      }
     };
 
     return (

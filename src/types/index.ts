@@ -32,7 +32,7 @@ export interface ButtonProps extends BaseComponentProps, Omit<ButtonHTMLAttribut
 }
 
 export interface InputProps extends BaseComponentProps, Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size'> {
-  onChange?: (value: string) => void;
+  onChange?: (value: string) => void | ((event: React.ChangeEvent<HTMLInputElement>) => void);
   error?: boolean;
   size?: Size;
   rounded?: boolean;
@@ -40,7 +40,7 @@ export interface InputProps extends BaseComponentProps, Omit<InputHTMLAttributes
 }
 
 export interface TextareaProps extends BaseComponentProps, Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'size'> {
-  onChange?: (value: string) => void;
+  onChange?: (value: string) => void | ((event: React.ChangeEvent<HTMLTextAreaElement>) => void);
   error?: boolean;
   size?: Size;
 }

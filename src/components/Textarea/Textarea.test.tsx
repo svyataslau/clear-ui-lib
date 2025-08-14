@@ -32,7 +32,10 @@ describe('Textarea', () => {
     expect(textarea).toHaveValue('test value');
     
     fireEvent.change(textarea, { target: { value: 'new value' } });
-    expect(handleChange).toHaveBeenCalledWith('new value');
+    expect(handleChange).toHaveBeenCalledTimes(1);
+    expect(handleChange).toHaveBeenCalledWith(expect.objectContaining({
+      type: 'change'
+    }));
   });
 
   it('applies disabled state correctly', () => {

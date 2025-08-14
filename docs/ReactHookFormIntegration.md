@@ -24,10 +24,8 @@ function MyForm() {
       label="Email"
       error={errors.email?.message}
       required
-      htmlFor="email"
     >
       <Input
-        id="email"
         type="email"
         placeholder="Enter your email"
         error={!!errors.email}
@@ -57,10 +55,8 @@ function MyForm() {
     <FormField
       label="Message"
       error={errors.message?.message}
-      htmlFor="message"
     >
       <Textarea
-        id="message"
         placeholder="Enter your message"
         rows={4}
         error={!!errors.message}
@@ -115,18 +111,23 @@ function MyForm() {
 <Input ref={register('field')} />
 ```
 
-### 2. Правильная связь label с input
+### 2. Автоматическая связь label с input
 
-Компонент `FormField` автоматически связывает label с input через `htmlFor`:
+Компонент `FormField` автоматически связывает label с input:
 
 ```tsx
 <FormField
   label="Email"
-  htmlFor="email" // Связывает label с input
+  required
 >
-  <Input id="email" {...register('email')} />
+  <Input {...register('email')} />
 </FormField>
 ```
+
+**FormField автоматически:**
+- Генерирует уникальный `id` для input
+- Связывает `label` с `input` через `htmlFor`
+- Не нужно вручную указывать `id` и `htmlFor`
 
 ### 3. Обработка ошибок
 

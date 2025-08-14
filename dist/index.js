@@ -83,7 +83,10 @@ const sizeClasses$3 = {
 };
 const Input = React.forwardRef(({ type = 'text', placeholder, value, onChange, disabled = false, error = false, size = 'md', rounded = false, neumorphic = false, className, ...props }, ref) => {
     const handleChange = (e) => {
-        onChange?.(e.target.value);
+        if (onChange) {
+            // Передаем событие напрямую - React Hook Form сам его обработает
+            onChange(e);
+        }
     };
     return (jsxRuntime.jsx("input", { ref: ref, type: type, placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, className: cn('w-full bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed', rounded ? 'rounded-full' : 'rounded-xl', neumorphic && 'input', sizeClasses$3[size], error && 'shadow-[inset_6px_6px_4px_#ffebee,inset_-6px_-6px_4px_#ffffff]', className), ...props }));
 });
@@ -163,7 +166,10 @@ const sizeClasses = {
 };
 const Textarea = React.forwardRef(({ placeholder, value, onChange, disabled = false, error = false, rows = 4, size = 'md', className, ...props }, ref) => {
     const handleChange = (e) => {
-        onChange?.(e.target.value);
+        if (onChange) {
+            // Передаем событие напрямую - React Hook Form сам его обработает
+            onChange(e);
+        }
     };
     return (jsxRuntime.jsx("textarea", { ref: ref, placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, rows: rows, className: cn('w-full rounded-xl bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed', sizeClasses[size], error && 'shadow-[inset_6px_6px_4px_#ffebee,inset_-6px_-6px_4px_#ffffff]', className), ...props }));
 });
@@ -209,7 +215,24 @@ function Typography({ children, variant = 'body', color = 'primary', weight, cla
 }
 
 const FormField = React.forwardRef(({ label, error, required = false, className, children, htmlFor }, ref) => {
-    return (jsxRuntime.jsxs("div", { ref: ref, className: cn('space-y-2', className), children: [label && (jsxRuntime.jsxs("label", { htmlFor: htmlFor, className: "block text-sm font-medium text-gray-700", children: [label, required && jsxRuntime.jsx("span", { className: "text-red-500 ml-1", children: "*" })] })), children, error && (jsxRuntime.jsx("p", { className: "text-sm text-red-600", children: error }))] }));
+    // Генерируем id если не предоставлен
+    const fieldId = htmlFor || `field-${Math.random().toString(36).substr(2, 9)}`;
+    // Клонируем children и добавляем id к первому input/textarea элементу
+    const enhancedChildren = React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+            // Проверяем, является ли это input или textarea
+            if (child.type === 'input' || child.type === 'textarea' ||
+                (typeof child.type === 'function' &&
+                    (child.type.displayName === 'Input' || child.type.displayName === 'Textarea'))) {
+                return React.cloneElement(child, {
+                    id: fieldId,
+                    ...child.props,
+                });
+            }
+        }
+        return child;
+    });
+    return (jsxRuntime.jsxs("div", { ref: ref, className: cn('space-y-2', className), children: [label && (jsxRuntime.jsxs("label", { htmlFor: fieldId, className: "block text-sm font-medium text-gray-700", children: [label, required && jsxRuntime.jsx("span", { className: "text-red-500 ml-1", children: "*" })] })), enhancedChildren, error && (jsxRuntime.jsx("p", { className: "text-sm text-red-600", children: error }))] }));
 });
 FormField.displayName = 'FormField';
 

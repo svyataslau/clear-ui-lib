@@ -20,14 +20,14 @@ interface ButtonProps extends BaseComponentProps, Omit<ButtonHTMLAttributes<HTML
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 interface InputProps extends BaseComponentProps, Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size'> {
-    onChange?: (value: string) => void;
+    onChange?: (value: string) => void | ((event: React.ChangeEvent<HTMLInputElement>) => void);
     error?: boolean;
     size?: Size;
     rounded?: boolean;
     neumorphic?: boolean;
 }
 interface TextareaProps extends BaseComponentProps, Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'size'> {
-    onChange?: (value: string) => void;
+    onChange?: (value: string) => void | ((event: React.ChangeEvent<HTMLTextAreaElement>) => void);
     error?: boolean;
     size?: Size;
 }
