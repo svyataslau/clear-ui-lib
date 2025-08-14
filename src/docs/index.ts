@@ -1,8 +1,8 @@
-export { DocGenerator } from './DocGenerator'
-export type { ComponentDoc } from './ComponentRegistry'
-export { 
-  componentDocs, 
-  registerComponent, 
-  getAllComponents, 
-  getComponent 
-} from './ComponentRegistry'
+export type { ComponentDoc } from './ComponentRegistry';
+export {
+  componentDocs,
+  getAllComponents,
+  getComponent,
+  registerComponent,
+} from './ComponentRegistry';
+export { DocGenerator } from './DocGenerator';

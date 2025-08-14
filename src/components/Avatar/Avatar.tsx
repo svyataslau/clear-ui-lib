@@ -1,6 +1,6 @@
-import React from 'react'
-import { AvatarProps } from '../../types'
-import { cn } from '../../utils/classNames'
+import React from 'react';
+import type { AvatarProps } from '../../types';
+import { cn } from '../../utils/classNames';
 
 const sizeClasses = {
   sm: 'w-8 h-8 text-sm',
@@ -10,7 +10,7 @@ const sizeClasses = {
   circle: 'w-16 h-16 text-xl',
   'circle-lg': 'w-20 h-20 text-2xl',
   'circle-xl': 'w-24 h-24 text-3xl',
-}
+};
 
 export function Avatar({
   src,
@@ -20,22 +20,22 @@ export function Avatar({
   className,
   ...props
 }: AvatarProps) {
-  const [imageError, setImageError] = React.useState(false)
+  const [imageError, setImageError] = React.useState(false);
 
   const handleImageError = () => {
-    setImageError(true)
-  }
+    setImageError(true);
+  };
 
   const getInitials = (name: string) => {
     return name
       .split(' ')
-      .map(word => word.charAt(0))
+      .map((word) => word.charAt(0))
       .join('')
       .toUpperCase()
-      .slice(0, 2)
-  }
+      .slice(0, 2);
+  };
 
-  const fallbackText = fallback ? getInitials(fallback) : '?'
+  const fallbackText = fallback ? getInitials(fallback) : '?';
 
   return (
     <div
@@ -59,5 +59,5 @@ export function Avatar({
         </span>
       )}
     </div>
-  )
+  );
 }

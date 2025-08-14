@@ -1,31 +1,30 @@
-import React from 'react'
-import { Typography } from '../components/Typography'
-import { Card } from '../components/Card'
-import { Button } from '../components/Button'
+import type React from 'react';
+import { Card } from '../components/Card';
+import { Typography } from '../components/Typography';
 
 interface ComponentDoc {
-  name: string
-  description: string
-  examples: React.ReactNode
+  name: string;
+  description: string;
+  examples: React.ReactNode;
   props?: Array<{
-    name: string
-    type: string
-    required: boolean
-    defaultValue?: string
-    description: string
-  }>
+    name: string;
+    type: string;
+    required: boolean;
+    defaultValue?: string;
+    description: string;
+  }>;
 }
 
 interface DocGeneratorProps {
-  components: ComponentDoc[]
-  title?: string
-  description?: string
+  components: ComponentDoc[];
+  title?: string;
+  description?: string;
 }
 
-export function DocGenerator({ 
-  components, 
-  title = "@clear/ui Documentation",
-  description = "Complete component library documentation"
+export function DocGenerator({
+  components,
+  title = '@clear/ui Documentation',
+  description = 'Complete component library documentation',
 }: DocGeneratorProps) {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -33,7 +32,10 @@ export function DocGenerator({
       <div className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="py-6">
-            <Typography variant="h1" className="text-3xl font-bold text-gray-900">
+            <Typography
+              variant="h1"
+              className="text-3xl font-bold text-gray-900"
+            >
               {title}
             </Typography>
             <Typography variant="subtitle" color="secondary" className="mt-2">
@@ -46,10 +48,13 @@ export function DocGenerator({
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="space-y-12">
-          {components.map((component, index) => (
+          {components.map((component) => (
             <section key={component.name} id={component.name.toLowerCase()}>
               <div className="mb-8">
-                <Typography variant="h2" className="text-2xl font-bold text-gray-900 mb-2">
+                <Typography
+                  variant="h2"
+                  className="text-2xl font-bold text-gray-900 mb-2"
+                >
                   {component.name}
                 </Typography>
                 <Typography variant="body" color="secondary">
@@ -58,15 +63,19 @@ export function DocGenerator({
               </div>
 
               {/* Examples */}
-              <Card variant="elevated" padding="lg" className="mb-8">
-                <Typography variant="h4" className="mb-4">Examples</Typography>
+              <Card variant="default" padding="lg" className="mb-8">
+                <Typography variant="h4" className="mb-4">
+                  Examples
+                </Typography>
                 {component.examples}
               </Card>
 
               {/* Props Table */}
               {component.props && component.props.length > 0 && (
                 <Card variant="outlined" padding="lg">
-                  <Typography variant="h4" className="mb-4">Props</Typography>
+                  <Typography variant="h4" className="mb-4">
+                    Props
+                  </Typography>
                   <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-200">
                       <thead className="bg-gray-50">
@@ -126,5 +135,5 @@ export function DocGenerator({
         </div>
       </div>
     </div>
-  )
+  );
 }

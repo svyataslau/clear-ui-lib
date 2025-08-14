@@ -1,274 +1,515 @@
-# @clear/ui
+# Clear UI Library
 
-A Neumorphism UI component library for social networks built with React, TypeScript, and Tailwind CSS.
+A modern React UI library with neumorphic design, built with TypeScript and Tailwind CSS.
 
-## Features
-
-- 🎨 **Neumorphism Design** - Soft, modern interface with subtle shadows and depth effects
-- 📱 **Responsive** - Mobile-first design that works on all screen sizes
-- 🎯 **TypeScript** - Full type safety with comprehensive interfaces
-- ⚡ **Lightweight** - Optimized bundle size with tree-shaking support
-- 🎛️ **Configurable** - Extensive prop options for customization
-- 🧩 **Modular** - Import only what you need
-
-## Installation
+## 🚀 Installation
 
 ```bash
 npm install @clear/ui
 ```
 
-## Design System
-
-@clear/ui uses **Neumorphism** design principles featuring:
-- **Soft Shadows** - Subtle depth effects with light and dark shadows
-- **Rounded Corners** - Smooth, modern rounded edges
-- **Depth Perception** - Elements appear to float above or sink into the surface
-- **Minimal Color Palette** - Focus on grays and subtle accent colors
-- **Interactive States** - Pressed and hover effects that enhance depth
-
-## Quick Start
+## 📦 Import
 
 ```tsx
-import { Button, Card, Navbar } from '@clear/ui'
-
-function App() {
-  return (
-    <div className="bg-neumorphism-background min-h-screen">
-      <Navbar
-        logo={<span>MyApp</span>}
-        links={[
-          { label: 'Home', href: '/', active: true },
-          { label: 'Profile', href: '/profile' }
-        ]}
-      />
-      
-      <Card variant="elevated" padding="lg">
-        <h2>Welcome!</h2>
-        <Button variant="primary">Get Started</Button>
-      </Card>
-    </div>
-  )
-}
+import { 
+  Button, 
+  Input, 
+  Card, 
+  Switch, 
+  ThemeProvider,
+  useTheme 
+} from '@clear/ui';
 ```
 
-## Components
+## 🎨 Core Components
 
 ### Button
+
 ```tsx
-<Button variant="primary" size="md">Click me</Button>
+import { Button } from '@clear/ui';
+
+// Main variants
+<Button variant="primary">Primary Button</Button>
+<Button variant="ghost">Ghost Button</Button>
+<Button variant="concave">Concave Button</Button>
+<Button variant="gradient">Gradient Button</Button>
+
+// Sizes
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+<Button size="xl">Extra Large</Button>
+
+// States
+<Button disabled>Disabled</Button>
+<Button onClick={() => console.log('clicked')}>Clickable</Button>
 ```
 
 ### Input
-```tsx
-<Input type="text" placeholder="Enter your name" />
-```
 
-### Textarea
 ```tsx
-<Textarea placeholder="Write your message..." rows={4} />
+import { Input } from '@clear/ui';
+
+// Regular input
+<Input placeholder="Enter text..." />
+
+// Neumorphic input
+<Input neumorphic placeholder="Neumorphic input" />
+
+// Rounded neumorphic input
+<Input neumorphic rounded placeholder="Rounded neumorphic" />
+
+// Sizes
+<Input size="sm" placeholder="Small" />
+<Input size="lg" placeholder="Large" />
+
+// States
+<Input error placeholder="Error state" />
+<Input disabled placeholder="Disabled" />
+
+// Types
+<Input type="email" placeholder="Email" />
+<Input type="password" placeholder="Password" />
+<Input type="search" placeholder="Search..." />
 ```
 
 ### Card
+
 ```tsx
-<Card variant="elevated" padding="lg">Content</Card>
+import { Card } from '@clear/ui';
+
+// Variants
+<Card variant="default">Default Card</Card>
+<Card variant="outlined">Outlined Card</Card>
+
+// Padding sizes
+<Card padding="sm">Small padding</Card>
+<Card padding="lg">Large padding</Card>
+
+// Rounded cards
+<Card rounded>Rounded Card</Card>
 ```
 
-### Avatar
+### Switch
+
 ```tsx
-<Avatar src="avatar.jpg" fallback="JD" size="md" />
+import { Switch } from '@clear/ui';
+
+// Controlled
+const [checked, setChecked] = useState(false);
+<Switch checked={checked} onChange={setChecked} />
+
+// Uncontrolled
+<Switch />
+
+// Disabled state
+<Switch disabled />
+<Switch checked disabled />
+```
+
+### CirclePlate
+
+```tsx
+import { CirclePlate } from '@clear/ui';
+
+// Sizes
+<CirclePlate size="sm">+</CirclePlate>
+<CirclePlate size="lg">★</CirclePlate>
+
+// Variants
+<CirclePlate variant="primary">P</CirclePlate>
+<CirclePlate variant="concave">C</CirclePlate>
 ```
 
 ### Typography
+
 ```tsx
-<Typography variant="h1" color="primary">Heading</Typography>
+import { Typography } from '@clear/ui';
+
+// Headings
+<Typography variant="h1">Heading 1</Typography>
+<Typography variant="h3">Heading 3</Typography>
+
+// Text
+<Typography variant="body">Body text</Typography>
+<Typography variant="caption">Caption text</Typography>
+
+// Colors
+<Typography color="primary">Primary text</Typography>
+<Typography color="accent">Accent text</Typography>
+
+// Weights
+<Typography weight="normal">Normal</Typography>
+<Typography weight="bold">Bold</Typography>
 ```
 
 ### Modal
+
 ```tsx
-<Modal isOpen={isOpen} onClose={onClose} title="Title">Content</Modal>
+import { Modal } from '@clear/ui';
+
+const [isOpen, setIsOpen] = useState(false);
+
+<Modal isOpen={isOpen} onClose={() => setIsOpen(false)} title="My Modal">
+  <p>Modal content goes here</p>
+</Modal>
 ```
 
 ### Navbar
+
 ```tsx
-<Navbar logo={<Logo />} links={links} actions={<Actions />} />
+import { Navbar } from '@clear/ui';
+
+const links = [
+  { label: 'Home', href: '/', active: true },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' }
+];
+
+<Navbar 
+  logo={<img src="/logo.png" alt="Logo" />}
+  links={links}
+  actions={<Button>Login</Button>}
+/>
 ```
 
-## Examples
+### Textarea
 
-See the `examples/` folder for comprehensive usage examples of each component.
-
-## Documentation
-
-The library includes a comprehensive automatic documentation system that generates a complete documentation page with all components, examples, and API reference. The documentation is built into the library and updates automatically when new components are added.
-
-### 🎯 Key Features
-
-- **Automatic Component Registration** - New components automatically appear in documentation
-- **Interactive Navigation** - Sidebar with quick navigation to all components
-- **Live Examples** - All component examples are displayed directly in the documentation
-- **Complete API Reference** - Props tables with types, descriptions, and default values
-- **Responsive Design** - Works perfectly on all devices
-- **Search & Filter** - Easy to find specific components and props
-
-### 📖 Using the Documentation
-
-#### Basic Usage
 ```tsx
-import { EnhancedDocumentationPage } from '@clear/ui/docs'
+import { Textarea } from '@clear/ui';
+
+<Textarea placeholder="Enter your message..." />
+<Textarea rows={5} placeholder="Multi-line text" />
+<Textarea error placeholder="Error state" />
+```
+
+## 🎨 Color Customization
+
+### ThemeProvider
+
+The library supports accent color customization through `ThemeProvider`:
+
+```tsx
+import { ThemeProvider } from '@clear/ui';
 
 function App() {
-  return <EnhancedDocumentationPage />
+  return (
+    <ThemeProvider initialTheme={{ accentColor: '#3b82f6' }}>
+      <YourApp />
+    </ThemeProvider>
+  );
 }
 ```
 
-#### Integration with Existing App
-```tsx
-import React, { useState } from 'react'
-import { EnhancedDocumentationPage } from '@clear/ui/docs'
+### Dynamic Color Changes
 
-function MyApp() {
-  const [showDocs, setShowDocs] = useState(false)
+```tsx
+import { useTheme } from '@clear/ui';
+
+function ColorPicker() {
+  const { theme, setTheme } = useTheme();
+
+  const changeColor = (color: string) => {
+    setTheme({
+      accentColor: color,
+      accentColorLight: color + '40', // 25% opacity
+      accentColorDark: color + '80',  // 50% opacity
+    });
+  };
 
   return (
     <div>
-      <header className="bg-white border-b px-4 py-3">
-        <button onClick={() => setShowDocs(!showDocs)}>
-          {showDocs ? 'Hide Docs' : 'Show Docs'}
-        </button>
-      </header>
-      
-      {showDocs ? (
-        <EnhancedDocumentationPage />
-      ) : (
-        <div>Your app content</div>
-      )}
+      <input 
+        type="color" 
+        value={theme.accentColor}
+        onChange={(e) => changeColor(e.target.value)}
+      />
+      <p>Current color: {theme.accentColor}</p>
     </div>
-  )
+  );
 }
 ```
 
-### ➕ Adding New Components to Documentation
+### Preset Colors
 
-When you create a new component, simply register it in the documentation system:
-
-#### Step 1: Create Component Example
 ```tsx
-// examples/NewComponentExample.tsx
-import React from 'react'
-import { NewComponent } from '../src'
+const presetColors = {
+  purple: '#a855f7',
+  blue: '#3b82f6',
+  green: '#10b981',
+  amber: '#f59e0b',
+  red: '#ef4444',
+  violet: '#8b5cf6'
+};
 
-export function NewComponentExample() {
+// Usage
+<ThemeProvider initialTheme={{ accentColor: presetColors.blue }}>
+  <App />
+</ThemeProvider>
+```
+
+### Theme Structure
+
+```tsx
+interface ThemeConfig {
+  accentColor: string;      // Main accent color
+  accentColorLight: string; // Light variant (for hover effects)
+  accentColorDark: string;  // Dark variant (for active states)
+}
+```
+
+## 🎯 Complete Application Example
+
+```tsx
+import React, { useState } from 'react';
+import { 
+  ThemeProvider, 
+  Button, 
+  Input, 
+  Card, 
+  Switch, 
+  Typography,
+  useTheme 
+} from '@clear/ui';
+
+function App() {
   return (
-    <div className="space-y-4">
-      <NewComponent variant="primary">Primary Variant</NewComponent>
-      <NewComponent variant="secondary">Secondary Variant</NewComponent>
-    </div>
-  )
+    <ThemeProvider initialTheme={{ accentColor: '#a855f7' }}>
+      <MyApp />
+    </ThemeProvider>
+  );
 }
+
+function MyApp() {
+  const [inputValue, setInputValue] = useState('');
+  const [switchChecked, setSwitchChecked] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <div className="p-8 space-y-6">
+      {/* Header */}
+      <Typography variant="h1" color="primary">
+        My Application
+      </Typography>
+
+      {/* Form Card */}
+      <Card padding="lg">
+        <Typography variant="h3" className="mb-4">
+          User Settings
+        </Typography>
+        
+        <div className="space-y-4">
+          {/* Neumorphic input */}
+          <Input
+            neumorphic
+            placeholder="Enter your name"
+            value={inputValue}
+            onChange={setInputValue}
+          />
+          
+          {/* Switch */}
+          <div className="flex items-center gap-2">
+            <Switch 
+              checked={switchChecked} 
+              onChange={setSwitchChecked} 
+            />
+            <Typography>Enable notifications</Typography>
+          </div>
+          
+          {/* Buttons */}
+          <div className="flex gap-2">
+            <Button variant="primary">Save</Button>
+            <Button variant="ghost">Cancel</Button>
+          </div>
+        </div>
+      </Card>
+
+      {/* Theme Customization */}
+      <Card padding="lg">
+        <Typography variant="h3" className="mb-4">
+          Theme Customization
+        </Typography>
+        
+        <div className="flex gap-2">
+          {['#a855f7', '#3b82f6', '#10b981', '#f59e0b'].map(color => (
+            <button
+              key={color}
+              onClick={() => setTheme({ accentColor: color })}
+              className="w-8 h-8 rounded border-2 border-gray-300"
+              style={{ backgroundColor: color }}
+            />
+          ))}
+        </div>
+      </Card>
+    </div>
+  );
+}
+
+export default App;
 ```
 
-#### Step 2: Register in Documentation
-```tsx
-import { registerComponent } from '@clear/ui'
-import { NewComponentExample } from './examples/NewComponentExample'
+## 🔧 Tailwind CSS Setup
 
-const newComponentDoc = {
-  name: 'NewComponent',
-  description: 'A versatile component for user interactions with multiple variants and states.',
-  examples: <NewComponentExample />,
-  props: [
-    {
-      name: 'variant',
-      type: "'primary' | 'secondary' | 'outline'",
-      required: false,
-      defaultValue: "'primary'",
-      description: 'The visual style variant of the component'
-    },
-    {
-      name: 'children',
-      type: 'ReactNode',
-      required: true,
-      description: 'The content to display inside the component'
-    },
-    {
-      name: 'onClick',
-      type: '() => void',
-      required: false,
-      description: 'Callback function when component is clicked'
+Make sure your `tailwind.config.js` includes the library paths:
+
+```js
+module.exports = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@clear/ui/dist/**/*.js"
+  ],
+  theme: {
+    extend: {
+      colors: {
+        accent: {
+          50: '#faf5ff',
+          100: '#f3e8ff',
+          200: '#e9d5ff',
+          300: '#d8b4fe',
+          400: '#c084fc',
+          500: '#a855f7',
+          600: '#9333ea',
+          700: '#7c3aed',
+          800: '#6b21a8',
+          900: '#581c87',
+        }
+      },
+      boxShadow: {
+        'neumorphism': '6px 6px 4px #d1d9e6, -6px -6px 4px #ffffff',
+        'neumorphism-inset': 'inset 6px 6px 4px #d1d9e6, inset -6px -6px 4px #ffffff',
+        'neumorphism-card': '6px 6px 4px #d1d9e6, -6px -6px 4px #ffffff',
+        'neumorphism-input': 'inset 6px 6px 4px #d1d9e6, inset -6px -6px 4px #ffffff',
+        'neumorphism-convex': '6px 6px 4px #d1d9e6, -6px -6px 4px #ffffff',
+        'neumorphism-concave': 'inset 6px 6px 4px #d1d9e6, inset -6px -6px 4px #ffffff',
+      }
     }
-  ]
-}
-
-registerComponent(newComponentDoc)
-```
-
-#### Step 3: Export from Library
-```tsx
-// src/index.ts
-export { NewComponent } from './components/NewComponent'
-export type { NewComponentProps } from './types'
-```
-
-### 📊 Documentation Structure
-
-The documentation system includes:
-
-- **Overview Section** - Library introduction and statistics
-- **Component Navigation** - Sidebar with all available components
-- **Component Pages** - Individual pages for each component featuring:
-  - Component description
-  - Interactive examples
-  - Complete props table
-  - Type definitions
-  - Default values
-  - Required/Optional status
-
-### 🎨 Documentation Components
-
-The system uses these internal components:
-
-- `DocGenerator` - Main documentation generator
-- `ComponentRegistry` - Automatic component registration system
-- `EnhancedDocumentationPage` - Full-featured documentation page
-- `DocumentationPage` - Simple documentation page
-
-### 🔧 Advanced Usage
-
-#### Custom Documentation Page
-```tsx
-import { DocGenerator, getAllComponents } from '@clear/ui'
-
-function CustomDocs() {
-  const components = getAllComponents()
-  
-  return (
-    <DocGenerator 
-      components={components}
-      title="My Custom Documentation"
-      description="Custom documentation for my project"
-    />
-  )
+  }
 }
 ```
 
-#### Get Specific Component Info
-```tsx
-import { getComponent } from '@clear/ui'
+## 📚 TypeScript Types
 
-const buttonInfo = getComponent('Button')
-console.log(buttonInfo?.props) // Array of button props
+```tsx
+import type { 
+  ButtonProps, 
+  InputProps, 
+  CardProps, 
+  SwitchProps,
+  ThemeConfig 
+} from '@clear/ui';
+
+// Using types
+const buttonProps: ButtonProps = {
+  variant: 'primary',
+  size: 'md',
+  onClick: () => console.log('clicked')
+};
 ```
 
-The component will automatically appear in the documentation page with examples, props table, and descriptions! The documentation system is designed to be maintainable and scalable as your component library grows.
+## 🎨 Design Features
 
-## Development
+### Neumorphism
+- All components use neumorphic design
+- Soft shadows create depth effects
+- Support for convex and concave states
+
+### Accent Colors
+- Unified accent color system
+- Automatic application to hover effects
+- Support for light and dark variants
+
+### Responsiveness
+- All components are responsive
+- Support for various screen sizes
+- Mobile-optimized
+
+## 📦 Package Size
+
+**Good news!** The demo app is NOT included in the npm package. Only the compiled library code is published:
+
+- **Total package size**: ~540KB
+- **Includes only**: Compiled components, types, and utilities
+- **Excludes**: Demo app, tests, development files, documentation
+
+The `package.json` specifies `"files": ["dist"]`, ensuring only the essential library files are published to npm.
+
+## 🚀 Usage for Consumers
+
+### Quick Installation
 
 ```bash
-npm install
-npm run build
-npm run dev
+# Install only the library (demo app not included)
+npm install @clear/ui
 ```
 
-## License
+### Basic Import
 
-MIT
+```tsx
+// Import components
+import { Button, Input, ThemeProvider } from '@clear/ui';
+
+// Use immediately
+<ThemeProvider initialTheme={{ accentColor: '#3b82f6' }}>
+  <Button variant="primary">Click me</Button>
+</ThemeProvider>
+```
+
+### Tree Shaking Support
+
+```tsx
+// Import only what you need - unused components won't be bundled
+import { Button } from '@clear/ui';        // Only Button component
+import { Input, Card } from '@clear/ui';   // Only Input and Card
+import { ThemeProvider } from '@clear/ui'; // Only theme system
+```
+
+### Minimal Setup
+
+```tsx
+import React from 'react';
+import { ThemeProvider, Button, Input } from '@clear/ui';
+
+function App() {
+  return (
+    <ThemeProvider>
+      <div className="p-4">
+        <Input placeholder="Enter text..." />
+        <Button variant="primary">Submit</Button>
+      </div>
+    </ThemeProvider>
+  );
+}
+```
+
+### What You Get
+
+✅ **540KB package** - Optimized for production  
+✅ **Tree-shaking** - Import only what you use  
+✅ **TypeScript support** - Full type definitions  
+✅ **No demo app** - Clean, minimal installation  
+✅ **Ready to use** - No additional setup required
+
+## 🚀 Demo Application
+
+Run the demo application to view all components:
+
+```bash
+npm run demo
+```
+
+The demo includes:
+- Interactive examples of all components
+- Custom color settings
+- Various variants and states
+
+## 📄 License
+
+MIT License
+
+## 🤝 Contributing
+
+We welcome contributions to the library! Please create issues and pull requests.
+
+## 📞 Support
+
+If you have questions or issues, create an issue in the repository.

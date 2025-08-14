@@ -2,19 +2,36 @@
   "name": "@clear/ui",
   "version": "1.0.0",
   "type": "module",
-  "description": "A Neumorphism UI component library for social networks",
+  "description": "A modern React UI library with neumorphic design, built with TypeScript and Tailwind CSS.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "keywords": [
+    "react",
+    "typescript",
+    "ui",
+    "components",
+    "neumorphism",
+    "tailwind",
+    "design-system"
+  ],
+  "author": "Clear UI Team",
+  "license": "MIT",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c rollup.config.dev.js --watch",
-    "demo": "node demo/server.js",
+    "demo": "cd demo-app && npm run dev",
     "type-check": "tsc --noEmit",
-    "lint": "eslint src --ext .ts,.tsx",
+    "lint": "biome lint src",
+    "format": "biome format src --write",
+    "check": "biome check src",
+    "check:fix": "biome check src --write",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "clean": "rm -rf dist"
   },
   "keywords": [
@@ -32,20 +49,26 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
+    "@biomejs/biome": "^2.1.4",
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-typescript": "^11.0.0",
+    "@testing-library/jest-dom": "^6.7.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^5.0.0",
     "autoprefixer": "^10.4.0",
-    "eslint": "^8.0.0",
+    "jsdom": "^26.1.0",
     "postcss": "^8.4.0",
     "rollup": "^3.0.0",
     "rollup-plugin-dts": "^5.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "tailwindcss": "^3.3.0",
     "tslib": "^2.6.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^3.2.4"
   },
   "dependencies": {
     "clsx": "^2.0.0"

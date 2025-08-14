@@ -1,5 +1,5 @@
-import clsx from 'clsx'
+import clsx from 'clsx';
 
 export function cn(...classes: (string | undefined | null | false)[]): string {
-  return clsx(classes.filter(Boolean))
+  return clsx(classes.filter(Boolean));
 }

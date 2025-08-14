@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { NavbarProps } from '../../types'
-import { cn } from '../../utils/classNames'
+import { useState } from 'react';
+import type { NavbarProps } from '../../types';
+import { cn } from '../../utils/classNames';
 
 export function Navbar({
   logo,
@@ -9,7 +9,7 @@ export function Navbar({
   className,
   ...props
 }: NavbarProps) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <nav
@@ -22,9 +22,7 @@ export function Navbar({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            {logo}
-          </div>
+          <div className="flex-shrink-0">{logo}</div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
@@ -34,10 +32,10 @@ export function Navbar({
                   key={index}
                   href={link.href}
                   className={cn(
-                    'px-3 py-2 rounded-md text-sm font-medium transition-colors',
+                    'px-3 py-2 rounded-md text-sm font-medium transition-all duration-200',
                     link.active
-                      ? 'bg-accent-100 text-accent-700'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      ? 'bg-gradient-to-r from-purple-400 to-purple-600 text-white'
+                      : 'text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white'
                   )}
                 >
                   {link.label}
@@ -48,9 +46,7 @@ export function Navbar({
 
           {/* Actions */}
           <div className="hidden md:block">
-            <div className="ml-4 flex items-center space-x-4">
-              {actions}
-            </div>
+            <div className="ml-4 flex items-center space-x-4">{actions}</div>
           </div>
 
           {/* Mobile menu button */}
@@ -103,10 +99,10 @@ export function Navbar({
                 key={index}
                 href={link.href}
                 className={cn(
-                  'block px-3 py-2 rounded-md text-base font-medium transition-colors',
+                  'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200',
                   link.active
-                    ? 'bg-accent-100 text-accent-700'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    ? 'bg-gradient-to-r from-purple-400 to-purple-600 text-white'
+                    : 'text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white'
                 )}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -115,14 +111,12 @@ export function Navbar({
             ))}
             {actions && (
               <div className="pt-4 pb-3 border-t border-gray-200">
-                <div className="flex items-center space-x-4">
-                  {actions}
-                </div>
+                <div className="flex items-center space-x-4">{actions}</div>
               </div>
             )}
           </div>
         </div>
       )}
     </nav>
-  )
+  );
 }

@@ -1,6 +1,6 @@
-import React from 'react'
-import { TypographyProps } from '../../types'
-import { cn } from '../../utils/classNames'
+import type React from 'react';
+import type { TypographyProps } from '../../types';
+import { cn } from '../../utils/classNames';
 
 const variantClasses = {
   h1: 'text-4xl font-bold',
@@ -12,21 +12,21 @@ const variantClasses = {
   subtitle: 'text-lg text-gray-600',
   body: 'text-base',
   caption: 'text-sm text-gray-500',
-}
+};
 
 const colorClasses = {
   primary: 'text-gray-900',
   secondary: 'text-gray-600',
   accent: 'text-accent-600',
   gray: 'text-gray-500',
-}
+};
 
 const weightClasses = {
   normal: 'font-normal',
   medium: 'font-medium',
   semibold: 'font-semibold',
   bold: 'font-bold',
-}
+};
 
 const variantElements = {
   h1: 'h1',
@@ -38,7 +38,7 @@ const variantElements = {
   subtitle: 'p',
   body: 'p',
   caption: 'span',
-} as const
+} as const;
 
 export function Typography({
   children,
@@ -48,7 +48,7 @@ export function Typography({
   className,
   ...props
 }: TypographyProps) {
-  const Element = variantElements[variant] as keyof JSX.IntrinsicElements
+  const Element = variantElements[variant] as keyof React.JSX.IntrinsicElements;
 
   return (
     <Element
@@ -62,5 +62,5 @@ export function Typography({
     >
       {children}
     </Element>
-  )
+  );
 }

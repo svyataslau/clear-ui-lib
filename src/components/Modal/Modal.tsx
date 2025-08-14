@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
-import { ModalProps } from '../../types'
-import { cn } from '../../utils/classNames'
+import { useEffect } from 'react';
+import type { ModalProps } from '../../types';
+import { cn } from '../../utils/classNames';
 
 const sizeClasses = {
   sm: 'max-w-md',
   md: 'max-w-lg',
   lg: 'max-w-2xl',
   xl: 'max-w-4xl',
-}
+};
 
 export function Modal({
   children,
@@ -21,22 +21,22 @@ export function Modal({
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        onClose()
+        onClose();
       }
-    }
+    };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'hidden'
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'unset'
-    }
-  }, [isOpen, onClose])
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen, onClose]);
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -45,11 +45,11 @@ export function Modal({
         className="absolute inset-0 bg-black bg-opacity-50 transition-opacity"
         onClick={onClose}
       />
-      
+
       {/* Modal */}
       <div
         className={cn(
-          'relative bg-neumorphism-background rounded-2xl shadow-neumorphism w-full mx-4 max-h-[90vh] overflow-y-auto',
+          'relative bg-neumorphism-background rounded-2xl w-full mx-4 max-h-[90vh] overflow-y-auto',
           sizeClasses[size],
           className
         )}
@@ -79,12 +79,10 @@ export function Modal({
             </button>
           </div>
         )}
-        
+
         {/* Content */}
-        <div className="p-6">
-          {children}
-        </div>
+        <div className="p-6">{children}</div>
       </div>
     </div>
-  )
+  );
 }

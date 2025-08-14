@@ -1,12 +1,10 @@
-import React from 'react'
-import { CardProps } from '../../types'
-import { cn } from '../../utils/classNames'
+import type { CardProps } from '../../types';
+import { cn } from '../../utils/classNames';
 
 const variantClasses = {
   default: 'bg-neumorphism-background shadow-neumorphism-card',
-  elevated: 'bg-neumorphism-background shadow-neumorphism',
   outlined: 'bg-neumorphism-background shadow-neumorphism-inset',
-}
+};
 
 const paddingClasses = {
   sm: 'p-3',
@@ -16,19 +14,21 @@ const paddingClasses = {
   circle: 'p-4',
   'circle-lg': 'p-4',
   'circle-xl': 'p-4',
-}
+};
 
 export function Card({
   children,
   variant = 'default',
   padding = 'md',
+  rounded = false,
   className,
   ...props
 }: CardProps) {
   return (
     <div
       className={cn(
-        'rounded-2xl transition-all duration-200',
+        'transition-all duration-200',
+        rounded ? 'rounded-full' : 'rounded-2xl',
         variantClasses[variant],
         paddingClasses[padding],
         className
@@ -37,5 +37,5 @@ export function Card({
     >
       {children}
     </div>
-  )
+  );
 }
