@@ -44,7 +44,10 @@ export type {
 // Utils
 export { ThemeProvider, useTheme, defaultTheme } from './context/ThemeContext';
 
-// Styles
+// Styles - automatically imported when using the library
 import './styles/index.css';
+
+// Re-export styles for manual import
+export * from './styles';
 
 

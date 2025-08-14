@@ -10,7 +10,8 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.js",
       "require": "./dist/index.js"
-    }
+    },
+    "./styles": "./dist/styles.css"
   },
   "keywords": [
     "react",
