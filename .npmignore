@@ -19,13 +19,13 @@ docs/
 test/
 vitest.config.ts
 
-# Build tools
-rollup.config.js
-rollup.config.dev.js
-tsconfig.json
-tailwind.config.ts
-postcss.config.cjs
-biome.json
+# Build tools (keeping these for postinstall builds)
+# rollup.config.js
+# rollup.config.dev.js
+# tsconfig.json
+# tailwind.config.ts
+# postcss.config.cjs
+# biome.json
 .eslintrc.json
 
 # Development dependencies
