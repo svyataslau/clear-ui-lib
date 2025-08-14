@@ -64,7 +64,6 @@ describe('Switch', () => {
       <Switch
         data-testid="test-switch"
         aria-label="Test switch"
-        name="test-switch"
       />
     );
     

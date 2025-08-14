@@ -6,6 +6,7 @@ import dts from 'rollup-plugin-dts'
 import { readFileSync } from 'fs'
 import { copyFileSync, mkdirSync } from 'fs'
 import { dirname } from 'path'
+import terser from '@rollup/plugin-terser'
 
 const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'))
 
@@ -17,18 +18,30 @@ export default [
         file: packageJson.main,
         format: 'cjs',
         sourcemap: true,
+        exports: 'named',
       },
       {
         file: packageJson.module,
         format: 'esm',
         sourcemap: true,
+        exports: 'named',
       },
     ],
     plugins: [
       peerDepsExternal(),
       resolve(),
       commonjs(),
-      typescript({ tsconfig: './tsconfig.json' }),
+      typescript({ 
+        tsconfig: './tsconfig.json',
+        declaration: true,
+        declarationDir: './dist',
+      }),
+      process.env.NODE_ENV === 'production' && terser({
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      }),
       {
         name: 'copy-css',
         writeBundle() {
@@ -41,7 +54,7 @@ export default [
           }
         },
       },
-    ],
+    ].filter(Boolean),
     external: ['react', 'react-dom'],
   },
   {

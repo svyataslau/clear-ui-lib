@@ -1,6 +1,6 @@
 {
   "name": "@clear/ui",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "A modern React UI library with neumorphic design, built with TypeScript and Tailwind CSS.",
   "main": "dist/index.js",
@@ -14,16 +14,22 @@
     "components",
     "neumorphism",
     "tailwind",
-    "design-system"
+    "design-system",
+    "react-19",
+    "modern-ui",
+    "component-library"
   ],
   "author": "Clear UI Team",
   "license": "MIT",
   "files": [
     "dist",
-    "src/styles/index.css"
+    "src/styles/index.css",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "rollup -c",
+    "build:prod": "npm run clean && rollup -c --environment NODE_ENV:production",
     "dev": "rollup -c rollup.config.dev.js --watch",
     "demo": "cd demo-app && npm run dev",
     "type-check": "tsc --noEmit",
@@ -34,18 +40,12 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "clean": "rm -rf dist"
+    "test:watch": "vitest --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build:prod && npm run test:run",
+    "prepack": "npm run build:prod"
   },
-  "keywords": [
-    "react",
-    "typescript",
-    "tailwind",
-    "ui",
-    "components",
-    "social-network"
-  ],
-  "author": "Clear UI Team",
-  "license": "MIT",
+
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
@@ -67,6 +67,7 @@
     "rollup": "^3.0.0",
     "rollup-plugin-dts": "^5.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "@rollup/plugin-terser": "^0.4.4",
     "tailwindcss": "^3.3.0",
     "tslib": "^2.6.0",
     "typescript": "^5.0.0",
@@ -74,5 +75,17 @@
   },
   "dependencies": {
     "clsx": "^2.0.0"
-  }
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clear-ui/ui-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/clear-ui/ui-library/issues"
+  },
+  "homepage": "https://github.com/clear-ui/ui-library#readme"
 }
