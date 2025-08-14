@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactNode, ButtonHTMLAttributes, InputHTMLAttributes, TextareaHTMLAttributes, HTMLAttributes } from 'react';
 
 export interface BaseComponentProps {
   className?: string;
@@ -25,50 +25,40 @@ export interface ThemeConfig {
   accentColorDark: string;
 }
 
-export interface ButtonProps extends BaseComponentProps {
+export interface ButtonProps extends BaseComponentProps, Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'> {
   variant?: Variant;
   size?: Size;
-  disabled?: boolean;
-  onClick?: () => void;
-  type?: 'button' | 'submit' | 'reset';
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export interface InputProps extends BaseComponentProps {
-  type?: 'text' | 'password' | 'email' | 'search';
-  placeholder?: string;
-  value?: string;
+export interface InputProps extends BaseComponentProps, Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'size'> {
   onChange?: (value: string) => void;
-  disabled?: boolean;
   error?: boolean;
   size?: Size;
   rounded?: boolean;
   neumorphic?: boolean;
 }
 
-export interface TextareaProps extends BaseComponentProps {
-  placeholder?: string;
-  value?: string;
+export interface TextareaProps extends BaseComponentProps, Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'size'> {
   onChange?: (value: string) => void;
-  disabled?: boolean;
   error?: boolean;
-  rows?: number;
   size?: Size;
 }
 
-export interface CardProps extends BaseComponentProps {
+export interface CardProps extends BaseComponentProps, HTMLAttributes<HTMLDivElement> {
   variant?: 'default' | 'outlined';
   padding?: Size;
   rounded?: boolean;
 }
 
-export interface AvatarProps extends BaseComponentProps {
+export interface AvatarProps extends BaseComponentProps, HTMLAttributes<HTMLDivElement> {
   src?: string;
   alt?: string;
   size?: Size;
   fallback?: string;
 }
 
-export interface TypographyProps extends BaseComponentProps {
+export interface TypographyProps extends BaseComponentProps, HTMLAttributes<HTMLElement> {
   variant?:
     | 'h1'
     | 'h2'
@@ -83,14 +73,14 @@ export interface TypographyProps extends BaseComponentProps {
   weight?: 'normal' | 'medium' | 'semibold' | 'bold';
 }
 
-export interface ModalProps extends BaseComponentProps {
+export interface ModalProps extends BaseComponentProps, HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-export interface NavbarProps extends BaseComponentProps {
+export interface NavbarProps extends BaseComponentProps, HTMLAttributes<HTMLElement> {
   logo?: ReactNode;
   links?: Array<{
     label: string;
@@ -100,13 +90,13 @@ export interface NavbarProps extends BaseComponentProps {
   actions?: ReactNode;
 }
 
-export interface SwitchProps extends BaseComponentProps {
+export interface SwitchProps extends BaseComponentProps, Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   checked?: boolean;
   onChange?: (checked: boolean) => void;
   disabled?: boolean;
 }
 
-export interface CirclePlateProps extends BaseComponentProps {
+export interface CirclePlateProps extends BaseComponentProps, HTMLAttributes<HTMLDivElement> {
   variant?: 'primary' | 'concave';
   size?: Size;
 }

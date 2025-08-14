@@ -58,7 +58,7 @@ export function Typography({
         weight && weightClasses[weight],
         className
       )}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </Element>

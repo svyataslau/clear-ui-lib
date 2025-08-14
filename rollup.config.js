@@ -4,6 +4,8 @@ import typescript from '@rollup/plugin-typescript'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import dts from 'rollup-plugin-dts'
 import { readFileSync } from 'fs'
+import { copyFileSync, mkdirSync } from 'fs'
+import { dirname } from 'path'
 
 const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'))
 
@@ -27,6 +29,18 @@ export default [
       resolve(),
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
+      {
+        name: 'copy-css',
+        writeBundle() {
+          // Copy CSS file to dist
+          try {
+            mkdirSync('dist', { recursive: true });
+            copyFileSync('src/styles/index.css', 'dist/index.css');
+          } catch (error) {
+            console.warn('Could not copy CSS file:', error.message);
+          }
+        },
+      },
     ],
     external: ['react', 'react-dom'],
   },
