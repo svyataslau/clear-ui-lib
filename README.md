@@ -17,6 +17,14 @@ A modern React component library with neumorphic design, using a zero-runtime ap
 npm install @clear/ui
 ```
 
+### Demo Application
+
+```bash
+npm run demo
+```
+
+![Demo screenshot](assets/demo.png)
+
 ## Usage
 
 ### Automatic Style Import
@@ -305,16 +313,6 @@ npm run build
 
 ```bash
 npm test
-```
-
-### Demo Application
-
-```bash
-npm run demo
-```
-
-```bash
-![Demo screenshot](assets/demo.png)
 ```
 
 ## License
