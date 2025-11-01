@@ -1,5 +1,5 @@
-// Экспорт только CSS стилей
+// Export CSS styles only
 import './styles/index.css';
 
-// Этот файл можно импортировать отдельно для получения только стилей
+// This file can be imported separately to get styles only
 // import '@clear/ui/styles';

@@ -1,22 +1,22 @@
-# Стили @clear/ui
+# @clear/ui Styles
 
-Библиотека `@clear/ui` включает полный набор стилей для neumorphic дизайна.
+The `@clear/ui` library includes a complete set of styles for neumorphic design.
 
-## Импорт стилей
+## Style Import
 
 ```tsx
 import '@clear/ui/styles';
 ```
 
-## Доступные стили
+## Available Styles
 
-### Tailwind CSS директивы
+### Tailwind CSS Directives
 - `@tailwind base`
 - `@tailwind components` 
 - `@tailwind utilities`
 
 ### Font Family
-По умолчанию используется `'Courier New', Courier, monospace` для всех элементов.
+By default, `'Courier New', Courier, monospace` is used for all elements.
 
 ### Neumorphic Background Colors
 
@@ -28,13 +28,13 @@ import '@clear/ui/styles';
 ### Neumorphic Shadow Styles
 
 ```css
-.shadow-neumorphism         /* Основная тень */
-.shadow-neumorphism-inset   /* Внутренняя тень */
-.shadow-neumorphism-pressed /* Тень при нажатии */
-.shadow-neumorphism-card    /* Тень для карточек */
-.shadow-neumorphism-input   /* Тень для инпутов */
-.shadow-neumorphism-convex  /* Выпуклая тень */
-.shadow-neumorphism-concave /* Вогнутая тень */
+.shadow-neumorphism         /* Main shadow */
+.shadow-neumorphism-inset   /* Inset shadow */
+.shadow-neumorphism-pressed /* Pressed shadow */
+.shadow-neumorphism-card    /* Card shadow */
+.shadow-neumorphism-input   /* Input shadow */
+.shadow-neumorphism-convex  /* Convex shadow */
+.shadow-neumorphism-concave /* Concave shadow */
 ```
 
 ### Custom Component Styles
@@ -67,31 +67,31 @@ import '@clear/ui/styles';
 ```
 
 #### Switch Component Styles
-Полный набор стилей для Switch компонента включая:
+Complete set of styles for the Switch component including:
 - `.switch-container`
 - `.toggle-checkbox`
 - `.switch`
 - `.toggle`
 - `.led`
-- Состояния `:checked` и `:hover`
+- `:checked` and `:hover` states
 
 #### Gradient Button Styles
 ```css
 .cssbuttons-io {
-  /* Градиентная кнопка с анимацией */
+  /* Gradient button with animation */
 }
 ```
 
-## Использование в проекте
+## Usage in Project
 
-### 1. Установка
+### 1. Installation
 ```bash
 npm install @clear/ui
 ```
 
-### 2. Импорт стилей в главном файле
+### 2. Import Styles in Main File
 ```tsx
-// App.tsx или main.tsx
+// App.tsx or main.tsx
 import '@clear/ui/styles';
 import { Input, Button, Card } from '@clear/ui';
 
@@ -107,9 +107,9 @@ function App() {
 }
 ```
 
-### 3. Настройка Tailwind CSS (если нужно)
+### 3. Tailwind CSS Configuration (if needed)
 
-Если вы хотите использовать только стили без Tailwind, убедитесь что у вас настроен PostCSS:
+If you want to use only styles without Tailwind, make sure PostCSS is configured:
 
 ```js
 // postcss.config.js
@@ -121,12 +121,12 @@ module.exports = {
 }
 ```
 
-## Кастомизация
+## Customization
 
-Все стили можно переопределить в вашем проекте:
+All styles can be overridden in your project:
 
 ```css
-/* Ваши кастомные стили */
+/* Your custom styles */
 .bg-neumorphism-background {
   background: #your-custom-color;
 }
@@ -136,7 +136,7 @@ module.exports = {
 }
 ```
 
-## Совместимость
+## Compatibility
 
 - ✅ React 16+
 - ✅ TypeScript

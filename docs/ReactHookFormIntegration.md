@@ -1,8 +1,8 @@
 # React Hook Form Integration
 
-Компоненты `@clear/ui` полностью совместимы с React Hook Form и поддерживают все его возможности.
+`@clear/ui` components are fully compatible with React Hook Form and support all its features.
 
-## Установка
+## Installation
 
 ```bash
 npm install @clear/ui react-hook-form
@@ -10,7 +10,7 @@ npm install @clear/ui react-hook-form
 
 ## Styled Components
 
-**Используйте NeumorphicProvider для подключения стилей!** Оберните ваше приложение в `NeumorphicProvider` для автоматического подключения всех neumorphic стилей.
+**Use NeumorphicProvider to connect styles!** Wrap your application in `NeumorphicProvider` to automatically connect all neumorphic styles.
 
 ```tsx
 import { NeumorphicProvider } from '@clear/ui';
@@ -24,7 +24,7 @@ function App() {
 }
 ```
 
-## Основные компоненты
+## Main Components
 
 ### Input
 
@@ -113,23 +113,23 @@ function MyForm() {
 }
 ```
 
-## Ключевые особенности
+## Key Features
 
-### 1. ForwardRef поддержка
+### 1. ForwardRef Support
 
-Все компоненты используют `forwardRef`, что позволяет React Hook Form правильно работать с refs:
+All components use `forwardRef`, which allows React Hook Form to work correctly with refs:
 
 ```tsx
-// ✅ Работает
+// ✅ Works
 <Input {...register('field')} />
 
-// ✅ Также работает
+// ✅ Also works
 <Input ref={register('field')} />
 ```
 
-### 2. Автоматическая связь label с input
+### 2. Automatic Label-Input Binding
 
-Компонент `FormField` автоматически связывает label с input:
+The `FormField` component automatically binds label to input:
 
 ```tsx
 <FormField
@@ -140,30 +140,30 @@ function MyForm() {
 </FormField>
 ```
 
-**FormField автоматически:**
-- Генерирует уникальный `id` для input
-- Связывает `label` с `input` через `htmlFor`
-- Не нужно вручную указывать `id` и `htmlFor`
+**FormField automatically:**
+- Generates a unique `id` for input
+- Binds `label` to `input` via `htmlFor`
+- No need to manually specify `id` and `htmlFor`
 
-### 3. Обработка ошибок
+### 3. Error Handling
 
-Компоненты поддерживают отображение ошибок:
+Components support error display:
 
 ```tsx
 <FormField
   label="Email"
-  error={errors.email?.message} // Отображает ошибку
+  error={errors.email?.message} // Displays error
 >
   <Input
-    error={!!errors.email} // Визуальная индикация ошибки
+    error={!!errors.email} // Visual error indication
     {...register('email')}
   />
 </FormField>
 ```
 
-### 4. Валидация
+### 4. Validation
 
-Полная поддержка всех возможностей валидации React Hook Form:
+Full support for all React Hook Form validation features:
 
 ```tsx
 <Input
@@ -181,7 +181,7 @@ function MyForm() {
 />
 ```
 
-## Полный пример
+## Complete Example
 
 ```tsx
 import React from 'react';
@@ -303,12 +303,12 @@ export function ContactForm() {
 }
 ```
 
-## Совместимость
+## Compatibility
 
 - ✅ React Hook Form v7+
 - ✅ TypeScript
-- ✅ Валидация
-- ✅ Обработка ошибок
+- ✅ Validation
+- ✅ Error Handling
 - ✅ Accessibility (ARIA)
 - ✅ ForwardRef
-- ✅ Контролируемые компоненты
+- ✅ Controlled Components

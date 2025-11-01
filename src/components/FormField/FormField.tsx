@@ -13,13 +13,13 @@ export interface FormFieldProps {
 
 export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
   ({ label, error, required = false, className, children, htmlFor }, ref) => {
-    // Генерируем id если не предоставлен
+    // Generate id if not provided
     const fieldId = htmlFor || `field-${Math.random().toString(36).substr(2, 9)}`;
 
-    // Клонируем children и добавляем id к первому input/textarea элементу
+    // Clone children and add id to the first input/textarea element
     const enhancedChildren = Children.map(children, (child) => {
       if (isValidElement(child)) {
-        // Проверяем, является ли это input или textarea
+        // Check if this is an input or textarea
         if (child.type === 'input' || child.type === 'textarea' || 
             (typeof child.type === 'function' && 
              ((child.type as any).displayName === 'Input' || (child.type as any).displayName === 'Textarea'))) {
