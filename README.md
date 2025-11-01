@@ -1,29 +1,29 @@
 # Clear UI Library
 
-Современная библиотека React компонентов с neumorphic дизайном, использующая zero-runtime подход к стилям.
+A modern React component library with neumorphic design, using a zero-runtime approach to styles.
 
-## Особенности
+## Features
 
-- 🎨 **Neumorphic дизайн** - современный стиль с мягкими тенями
-- ⚡ **Zero-runtime CSS** - все стили компилируются в CSS файлы
-- 🧩 **TypeScript** - полная типизация всех компонентов
-- 📱 **Responsive** - адаптивный дизайн
-- 🎯 **Accessible** - поддержка доступности
-- 🧪 **Tested** - покрытие тестами
+- 🎨 **Neumorphic Design** - modern style with soft shadows
+- ⚡ **Zero-runtime CSS** - all styles are compiled into CSS files
+- 🧩 **TypeScript** - full typing for all components
+- 📱 **Responsive** - adaptive design
+- 🎯 **Accessible** - accessibility support
+- 🧪 **Tested** - test coverage
 
-## Установка
+## Installation
 
 ```bash
 npm install @clear/ui
 ```
 
-## Использование
+## Usage
 
-### Автоматический импорт стилей
+### Automatic Style Import
 
-Стили импортируются автоматически при использовании библиотеки. Дополнительный импорт CSS не требуется.
+Styles are automatically imported when using the library. No additional CSS import is required.
 
-### Базовое использование
+### Basic Usage
 
 ```tsx
 import { Button, Input, Card } from '@clear/ui';
@@ -42,20 +42,20 @@ function App() {
 }
 ```
 
-## Компоненты
+## Components
 
 ### Button
 
 ```tsx
 import { Button } from '@clear/ui';
 
-// Размеры
+// Sizes
 <Button size="sm">Small</Button>
 <Button size="md">Medium</Button>
 <Button size="lg">Large</Button>
 <Button size="xl">Extra Large</Button>
 
-// Варианты
+// Variants
 <Button variant="primary">Primary</Button>
 <Button variant="ghost">Ghost</Button>
 <Button variant="concave">Concave</Button>
@@ -67,13 +67,13 @@ import { Button } from '@clear/ui';
 ```tsx
 import { Input } from '@clear/ui';
 
-// Размеры
+// Sizes
 <Input size="sm" placeholder="Small input" />
 <Input size="md" placeholder="Medium input" />
 <Input size="lg" placeholder="Large input" />
 <Input size="xl" placeholder="Extra large input" />
 
-// Стили
+// Styles
 <Input rounded placeholder="Rounded input" />
 <Input neumorphic placeholder="Neumorphic input" />
 <Input error placeholder="Error input" />
@@ -102,17 +102,17 @@ function MyComponent() {
 ```tsx
 import { Card } from '@clear/ui';
 
-// Варианты
+// Variants
 <Card variant="default">Default card</Card>
 <Card variant="outlined">Outlined card</Card>
 
-// Размеры отступов
+// Padding sizes
 <Card padding="sm">Small padding</Card>
 <Card padding="md">Medium padding</Card>
 <Card padding="lg">Large padding</Card>
 <Card padding="xl">Extra large padding</Card>
 
-// Скругленные углы
+// Rounded corners
 <Card rounded>Rounded card</Card>
 ```
 
@@ -169,12 +169,12 @@ import { Typography } from '@clear/ui';
 <Typography variant="body">Body text</Typography>
 <Typography variant="caption">Caption text</Typography>
 
-// Цвета
+// Colors
 <Typography color="primary">Primary text</Typography>
 <Typography color="secondary">Secondary text</Typography>
 <Typography color="accent">Accent text</Typography>
 
-// Вес
+// Weight
 <Typography weight="normal">Normal weight</Typography>
 <Typography weight="medium">Medium weight</Typography>
 <Typography weight="bold">Bold weight</Typography>
@@ -185,13 +185,13 @@ import { Typography } from '@clear/ui';
 ```tsx
 import { Avatar } from '@clear/ui';
 
-// С изображением
+// With image
 <Avatar src="/path/to/image.jpg" alt="User avatar" />
 
-// С fallback текстом
+// With fallback text
 <Avatar fallback="John Doe" />
 
-// Размеры
+// Sizes
 <Avatar size="sm" fallback="JD" />
 <Avatar size="md" fallback="JD" />
 <Avatar size="lg" fallback="JD" />
@@ -203,11 +203,11 @@ import { Avatar } from '@clear/ui';
 ```tsx
 import { CirclePlate } from '@clear/ui';
 
-// Варианты
+// Variants
 <CirclePlate variant="primary">Primary</CirclePlate>
 <CirclePlate variant="concave">Concave</CirclePlate>
 
-// Размеры
+// Sizes
 <CirclePlate size="sm">Small</CirclePlate>
 <CirclePlate size="md">Medium</CirclePlate>
 <CirclePlate size="lg">Large</CirclePlate>
@@ -243,85 +243,84 @@ import { FormField, Input } from '@clear/ui';
 
 ## Zero-Runtime CSS
 
-Библиотека использует zero-runtime подход к стилям:
+The library uses a zero-runtime approach to styles:
 
-- Все стили компилируются в CSS файлы
-- Нет runtime overhead от styled-components
-- Лучшая производительность
-- Меньший размер бандла
+- All styles are compiled into CSS files
+- No runtime overhead from styled-components
+- Better performance
+- Smaller bundle size
 
-### CSS классы
+### CSS Classes
 
-Основные CSS классы для neumorphic стилей:
+Main CSS classes for neumorphic styles:
 
 ```css
-/* Фоны */
+/* Backgrounds */
 .bg-neumorphism-background
 .bg-neumorphism-classic
 
-/* Тени */
+/* Shadows */
 .shadow-neumorphism
 .shadow-neumorphism-inset
 .shadow-neumorphism-card
 .shadow-neumorphism-input
 .shadow-neumorphism-concave
 
-/* Компоненты */
+/* Components */
 .input-base
 .switch-container
 .card
 .cssbuttons-io
 ```
 
-### Ручной импорт CSS (опционально)
+### Manual CSS Import (Optional)
 
-Если вам нужно импортировать CSS вручную (например, для кастомизации), вы можете использовать:
+If you need to import CSS manually (for example, for customization), you can use:
 
 ```tsx
 import '@clear/ui/styles';
 ```
 
-## Разработка
+## Development
 
-### Установка зависимостей
+### Installing Dependencies
 
 ```bash
 npm install
 ```
 
-### Запуск в режиме разработки
+### Running in Development Mode
 
 ```bash
 npm run dev
 ```
 
-### Сборка
+### Building
 
 ```bash
 npm run build
 ```
 
-### Тесты
+### Tests
 
 ```bash
 npm test
 ```
 
-### Demo приложение
+### Demo Application
 
 ```bash
 npm run demo
 ```
 
-## Миграция с styled-components
+```bash
+![Demo screenshot](assets/demo.png)
+```
 
-Если вы мигрируете с styled-components:
+## License
 
-1. Удалите импорты styled-components
-2. Замените `cn()` на `clsx()` из пакета `clsx`
-3. Используйте CSS классы вместо styled-components
-4. CSS импортируется автоматически, дополнительный импорт не требуется
+```bash
 
-## Лицензия
+```
 
 MIT
