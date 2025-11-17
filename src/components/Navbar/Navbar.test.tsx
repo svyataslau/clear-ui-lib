@@ -85,8 +85,8 @@ describe('Navbar', () => {
     const aboutLink = screen.getByText('About');
     
     // The active link should have different styling
-    expect(homeLink.closest('a')).toHaveClass('bg-gradient-to-r', 'from-purple-400', 'to-purple-600', 'text-white');
-    expect(aboutLink.closest('a')).toHaveClass('text-gray-600');
+    expect(homeLink.closest('a')).toHaveClass('nav-link-active');
+    expect(aboutLink.closest('a')).toHaveClass('nav-link-inactive');
   });
 
   it('renders mobile menu correctly', () => {

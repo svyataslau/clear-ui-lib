@@ -5,7 +5,7 @@ export function ButtonStories() {
   return (
     <div className="space-y-8">
       {/* Variants */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Variants</Typography>
         <div className="flex flex-wrap gap-4">
           <Button variant="primary">Primary</Button>
@@ -16,7 +16,7 @@ export function ButtonStories() {
       </Card>
 
       {/* Sizes */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Sizes</Typography>
         <div className="flex flex-wrap items-center gap-4">
           <Button size="sm">Small</Button>
@@ -29,7 +29,7 @@ export function ButtonStories() {
 
 
       {/* States */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">States</Typography>
         <div className="flex flex-wrap gap-4">
           <Button>Normal</Button>
@@ -38,7 +38,7 @@ export function ButtonStories() {
       </Card>
 
       {/* Interactive Demo */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Interactive Demo</Typography>
         <div className="space-y-4">
           <div className="flex flex-wrap gap-4">

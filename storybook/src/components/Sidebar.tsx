@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card } from '@clear/ui';
 
 interface SidebarProps {
@@ -23,7 +22,7 @@ interface SidebarProps {
 export function Sidebar({ selectedComponent, onComponentSelect }: SidebarProps) {
   return (
     <div className="w-64 bg-neumorphism-background shadow-neumorphism-card min-h-screen p-4">
-      <Card variant="elevated" padding="lg" className="h-full">
+      <Card padding="lg" className="h-full">
         <div className="space-y-2">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Components</h2>
           {components.map((component) => (
@@ -32,7 +31,7 @@ export function Sidebar({ selectedComponent, onComponentSelect }: SidebarProps) 
               onClick={() => onComponentSelect(component)}
               className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
                 selectedComponent === component
-                  ? 'bg-accent-100 text-accent-700'
+                  ? 'bg-accent-light text-white'
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
               }`}
             >

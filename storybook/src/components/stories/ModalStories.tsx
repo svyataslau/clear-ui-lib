@@ -13,7 +13,7 @@ export function ModalStories() {
   return (
     <div className="space-y-8">
       {/* Sizes */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Modal Sizes</Typography>
         <div className="flex flex-wrap gap-4">
           <Button onClick={() => openModal('sm')}>Small Modal</Button>

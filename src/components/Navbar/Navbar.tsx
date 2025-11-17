@@ -34,8 +34,8 @@ export function Navbar({
                   className={clsx(
                     'px-3 py-2 rounded-md text-sm font-medium transition-all duration-200',
                     link.active
-                      ? 'bg-gradient-to-r from-purple-400 to-purple-600 text-white'
-                      : 'text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white'
+                      ? 'nav-link-active'
+                      : 'nav-link-inactive'
                   )}
                 >
                   {link.label}
@@ -108,8 +108,8 @@ export function Navbar({
                 className={clsx(
                   'block px-3 py-2 rounded-md text-base font-medium transition-all duration-200',
                   link.active
-                    ? 'bg-gradient-to-r from-purple-400 to-purple-600 text-white'
-                    : 'text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white'
+                    ? 'nav-link-active'
+                    : 'nav-link-inactive'
                 )}
                 onClick={() => setIsMobileMenuOpen(false)}
               >

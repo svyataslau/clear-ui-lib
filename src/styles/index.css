@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  /* Accent theme variables - fallback defaults (will be overridden by ThemeProvider) */
+  :root {
+    --accent-color: #a855f7;
+    --accent-color-light: #d8b4fe;
+    --accent-color-dark: #7c3aed;
+  }
+
   * {
     font-family: 'Courier New', Courier, monospace;
   }
@@ -18,33 +25,42 @@
     background: #f0f0f3;
   }
   
-  /* Neumorphism shadow styles */
+  /* Neumorphism shadow styles - defined outside of Tailwind to avoid conflicts */
   .shadow-neumorphism {
-    box-shadow: 18px 18px 30px #d1d9e6, -18px -18px 30px #ffffff;
+    box-shadow: 5px 5px 8px #d3d3d3, -5px -5px 8px #ffffff;
   }
-  
+
   .shadow-neumorphism-inset {
-    box-shadow: inset 18px 18px 30px #d1d9e6, inset -18px -18px 30px #ffffff;
+    box-shadow: inset 5px 5px 8px #d3d3d3, inset -5px -5px 8px #ffffff;
   }
-  
+
   .shadow-neumorphism-pressed {
-    box-shadow: inset 18px 18px 30px #c7ccd3, inset -18px -18px 30px #ffffff;
+    box-shadow: inset 18px 18px 30px #d3d3d3, inset -18px -18px 30px #ffffff;
   }
-  
+
   .shadow-neumorphism-card {
-    box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff;
+    box-shadow: 5px 5px 20px #d3d3d3, -7px -7px 15px #ffffff;
   }
-  
+
   .shadow-neumorphism-input {
-    box-shadow: inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff;
+    box-shadow: inset 6px 6px 4px #d3d3d3, inset -6px -6px 4px #ffffff;
   }
-  
+
   .shadow-neumorphism-convex {
-    box-shadow: -10px -10px 30px #ffffff, 10px 10px 30px #aeaece 40%;
+    box-shadow: -10px -10px 30px #ffffff, 10px 10px 30px #d3d3d3;
   }
-  
+
   .shadow-neumorphism-concave {
-    box-shadow: inset -10px -10px 10px #aeaece 25%, inset 10px 10px 10px #ffffff;
+    box-shadow: inset 5px 5px 8px #d3d3d3, inset -5px -5px 8px #ffffff;
+  }
+
+  textarea {
+    resize: none;
+    overflow: auto;
+  }
+
+  textarea::-webkit-resizer {
+    display: none;
   }
   
   /* Custom Input Styles */
@@ -84,17 +100,19 @@
   .input-default {
     border-radius: 0.75rem;
   }
-  
+
   .input-shadow-default {
-    box-shadow: inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff;
+    box-shadow: inset 6px 6px 4px #d3d3d3, inset -6px -6px 4px #ffffff;
   }
 
   .input-shadow-error {
-    box-shadow: inset 6px 6px 4px #ffebee, inset -6px -6px 4px #ffffff;
+    box-shadow: inset 6px 6px 4px rgba(255, 165, 165, 0.5), inset -6px -6px 4px rgba(255, 250, 250, 0.5);
+    background: rgba(255, 232, 232, 0.5);
   }
-  
+
   .textarea-shadow-error {
-    box-shadow: inset 6px 6px 4px #ffebee, inset -6px -6px 4px #ffffff;
+    box-shadow: inset 6px 6px 4px rgba(255, 165, 165, 0.5), inset -6px -6px 4px rgba(255, 250, 250, 0.5);
+    background: rgba(255, 232, 232, 0.5);
   }
   
   .input-disabled {
@@ -184,8 +202,8 @@
   }
   
   .led-checked {
-    background: #a855f7;
-    box-shadow: 0 0 15px 4px #a855f7;
+    background: var(--accent-color);
+    box-shadow: 0 0 15px 4px var(--accent-color);
   }
   
   .led-disabled {
@@ -199,8 +217,8 @@
   }
   
   .toggle-checkbox:checked + .switch .led {
-    background: #a855f7;
-    box-shadow: 0 0 15px 4px #a855f7;
+    background: var(--accent-color);
+    box-shadow: 0 0 15px 4px var(--accent-color);
   }
   
   .switch:hover .toggle {
@@ -217,7 +235,7 @@
     border-radius: 0.8em;
     cursor: pointer;
     border: none;
-    background: linear-gradient(to right, #8e2de2, #4a00e0);
+    background: linear-gradient(to right, var(--accent-color-light), var(--accent-color-dark));
     color: ghostwhite;
     overflow: hidden;
   }
@@ -271,5 +289,76 @@
   
   .neumorphic-dark {
     background-color: #d1d9e6;
+  }
+
+  /* Accent color utility classes using CSS variables */
+  .hover-accent-gradient {
+    transition: all 0.2s;
+  }
+
+  .hover-accent-gradient:hover {
+    background-image: linear-gradient(to right, var(--accent-color-light), var(--accent-color-dark));
+  }
+
+  .accent-shadow-inset {
+    box-shadow: inset -6px -6px 4px var(--accent-color-light), inset 6px 6px 4px #ffffff;
+  }
+
+  .accent-ring:focus {
+    outline: none;
+    ring-width: 2px;
+    ring-offset-width: 2px;
+    ring-color: var(--accent-color);
+  }
+
+  /* Navbar accent styles */
+  .nav-link-active {
+    background-color: var(--accent-color);
+    color: white;
+  }
+
+  .nav-link-inactive {
+    color: #4b5563;
+  }
+
+  .nav-link-inactive:hover {
+    background-image: linear-gradient(to right, var(--accent-color-light), var(--accent-color-dark));
+    color: white;
+  }
+
+  /* Modal accent styles */
+  .modal-close-btn:focus {
+    outline: none;
+    ring-width: 2px;
+    ring-color: var(--accent-color);
+  }
+
+  /* Dynamic accent color utilities */
+  .text-accent {
+    color: var(--accent-color);
+  }
+
+  .text-accent-light {
+    color: var(--accent-color-light);
+  }
+
+  .text-accent-dark {
+    color: var(--accent-color-dark);
+  }
+
+  .bg-accent {
+    background-color: var(--accent-color);
+  }
+
+  .bg-accent-light {
+    background-color: var(--accent-color-light);
+  }
+
+  .bg-accent-dark {
+    background-color: var(--accent-color-dark);
+  }
+
+  .border-accent {
+    border-color: var(--accent-color);
   }
 }

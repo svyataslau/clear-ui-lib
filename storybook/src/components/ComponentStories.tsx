@@ -1,4 +1,3 @@
-import React from 'react';
 import { ButtonStories } from './stories/ButtonStories';
 import { InputStories } from './stories/InputStories';
 import { CardStories } from './stories/CardStories';
@@ -41,7 +40,7 @@ export function ComponentStories({ selectedComponent }: ComponentStoriesProps) {
       case 'ThemeDemo':
         return <ThemeDemo />;
       default:
-        return <div>Component not found</div>;
+        return null;
     }
   };
 

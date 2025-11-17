@@ -7,7 +7,7 @@ export function TextareaStories() {
   return (
     <div className="space-y-8">
       {/* Basic Textarea */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Basic Textarea</Typography>
         <div className="space-y-4 max-w-md">
           <Textarea placeholder="Enter your message..." />
@@ -15,7 +15,7 @@ export function TextareaStories() {
       </Card>
 
       {/* Sizes */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Sizes</Typography>
         <div className="space-y-4 max-w-md">
           <Textarea size="sm" placeholder="Small textarea" />
@@ -26,7 +26,7 @@ export function TextareaStories() {
       </Card>
 
       {/* States */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">States</Typography>
         <div className="space-y-4 max-w-md">
           <Textarea placeholder="Normal textarea" />
@@ -36,7 +36,7 @@ export function TextareaStories() {
       </Card>
 
       {/* Controlled Textarea */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Controlled Textarea</Typography>
         <div className="space-y-4 max-w-md">
           <Textarea
@@ -52,7 +52,7 @@ export function TextareaStories() {
       </Card>
 
       {/* Rows */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Different Rows</Typography>
         <div className="space-y-4 max-w-md">
           <Textarea placeholder="2 rows" rows={2} />

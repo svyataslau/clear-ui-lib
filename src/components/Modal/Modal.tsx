@@ -68,7 +68,10 @@ export function Modal({
             <button
               type="button"
               onClick={onClose}
-              className="p-1 text-gray-400 hover:text-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="p-1 text-gray-400 hover:text-gray-600 transition-colors focus:outline-none focus:ring-2 modal-close-btn"
+              style={{
+                '--tw-ring-color': 'var(--accent-color)',
+              } as React.CSSProperties}
               aria-label="Close modal"
             >
               <svg

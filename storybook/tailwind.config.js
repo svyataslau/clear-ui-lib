@@ -59,13 +59,7 @@ export default {
       boxShadow: {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
         'medium': '0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-        'neumorphism': '8px 8px 5px #d1d9e6, -8px -8px 5px #ffffff',
-        'neumorphism-inset': 'inset 8px 8px 5px #d1d9e6, inset -8px -8px 5px #ffffff',
-        'neumorphism-pressed': 'inset 8px 8px 5px #c7ccd3, inset -8px -8px 5px #ffffff',
-        'neumorphism-card': '6px 6px 4px #d1d9e6, -6px -6px 4px #ffffff',
-        'neumorphism-input': 'inset 6px 6px 4px #d1d9e6, inset -6px -6px 4px #ffffff',
-        'neumorphism-convex': '-6px -6px 4px #ffffff, 6px 6px 4px #aeaece',
-        'neumorphism-concave': 'inset -6px -6px 4px #aeaece, inset 6px 6px 4px #ffffff',
+        // Neumorphism shadows defined in src/styles/index.css - don't override them here
       }
     }
   },

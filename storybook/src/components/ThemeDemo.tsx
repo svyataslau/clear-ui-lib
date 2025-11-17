@@ -1,17 +1,58 @@
-import React, { useState } from 'react';
-import { ThemeProvider, useTheme, Button, Card, Typography, Input, Switch } from '@clear/ui';
+import { useState } from 'react';
+import { useTheme, Button, Card, Typography, Input, Switch } from '@clear/ui';
+
+// Helper function to convert hex to RGB
+function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+}
+
+// Helper function to lighten/darken color
+function adjustColor(hex: string, percent: number): string {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return hex;
+
+  const adjust = (value: number) => {
+    if (percent > 0) {
+      // Lighten: increase towards 255
+      const adjusted = Math.round(value + (255 - value) * (percent / 100));
+      return Math.min(255, Math.max(0, adjusted));
+    } else {
+      // Darken: decrease towards 0
+      const adjusted = Math.round(value * (1 + percent / 100));
+      return Math.min(255, Math.max(0, adjusted));
+    }
+  };
+
+  const r = adjust(rgb.r).toString(16).padStart(2, '0');
+  const g = adjust(rgb.g).toString(16).padStart(2, '0');
+  const b = adjust(rgb.b).toString(16).padStart(2, '0');
+
+  return `#${r}${g}${b}`;
+}
 
 function ThemeDemoContent() {
   const { theme, setTheme } = useTheme();
   const [accentColor, setAccentColor] = useState(theme.accentColor);
 
   const handleColorChange = (color: string) => {
+    console.log('🎨 [ThemeDemo] Changing color to:', color);
     setAccentColor(color);
-    setTheme({
+    
+    const newTheme = {
       accentColor: color,
-      accentColorLight: color + '40', // 25% opacity
-      accentColorDark: color + '80', // 50% opacity
-    });
+      accentColorLight: adjustColor(color, 40), // Lighter version
+      accentColorDark: adjustColor(color, -20), // Darker version
+    };
+    
+    console.log('🎨 [ThemeDemo] Computed theme:', newTheme);
+    setTheme(newTheme);
   };
 
   const presetColors = [
@@ -76,7 +117,7 @@ function ThemeDemoContent() {
           
           <div>
             <Typography variant="body" className="mb-2">Switch:</Typography>
-            <Switch />
+            <Switch checked/>
           </div>
         </div>
       </Card>
@@ -95,9 +136,7 @@ function ThemeDemoContent() {
 }
 
 export function ThemeDemo() {
-  return (
-    <ThemeProvider>
-      <ThemeDemoContent />
-    </ThemeProvider>
-  );
+  // ThemeProvider теперь живет на уровне всего storybook (в App),
+  // поэтому здесь достаточно просто отрендерить контент.
+  return <ThemeDemoContent />;
 }

@@ -5,7 +5,7 @@ export function AvatarStories() {
   return (
     <div className="space-y-8">
       {/* Sizes */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Sizes</Typography>
         <div className="flex items-center space-x-4">
           <Avatar size="sm" fallback="JD" />
@@ -16,7 +16,7 @@ export function AvatarStories() {
       </Card>
 
       {/* With Images */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">With Images</Typography>
         <div className="flex items-center space-x-4">
           <Avatar 
@@ -33,7 +33,7 @@ export function AvatarStories() {
       </Card>
 
       {/* Fallbacks */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Fallbacks</Typography>
         <div className="flex items-center space-x-4">
           <Avatar fallback="John Doe" />

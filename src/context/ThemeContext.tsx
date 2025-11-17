@@ -31,8 +31,25 @@ export function ThemeProvider({ children, initialTheme = {} }: ThemeProviderProp
   });
 
   const setTheme = React.useCallback((newTheme: Partial<ThemeConfig>) => {
-    setThemeState(prev => ({ ...prev, ...newTheme }));
+    setThemeState((prev) => ({ ...prev, ...newTheme }));
   }, []);
+
+  // Initialize CSS variables on mount and sync theme to CSS variables
+  React.useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--accent-color', theme.accentColor);
+    root.style.setProperty('--accent-color-light', theme.accentColorLight);
+    root.style.setProperty('--accent-color-dark', theme.accentColorDark);
+    
+    console.log('🎨 Theme CSS variables updated:', {
+      '--accent-color': theme.accentColor,
+      '--accent-color-light': theme.accentColorLight,
+      '--accent-color-dark': theme.accentColorDark,
+    });
+
+    // Force re-render by updating a data attribute
+    root.setAttribute('data-theme-accent', theme.accentColor);
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>

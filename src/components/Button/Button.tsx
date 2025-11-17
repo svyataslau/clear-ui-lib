@@ -9,9 +9,12 @@ const sizeClasses = {
 };
 
 const variantClasses = {
-  primary: 'bg-neumorphism-background text-gray-700 shadow-neumorphism-card hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white transition-all duration-200',
-  ghost: 'bg-transparent text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white transition-all duration-200',
-  concave: 'bg-neumorphism-classic text-gray-700 shadow-neumorphism-concave hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white hover:shadow-[inset_-6px_-6px_4px_#d8b4fe,inset_6px_6px_4px_#ffffff] transition-all duration-200',
+  primary:
+    'bg-neumorphism-background text-gray-700 shadow-neumorphism-card hover-accent-gradient hover:text-white',
+  ghost:
+    'bg-transparent text-gray-600 hover-accent-gradient hover:text-white',
+  concave:
+    'bg-neumorphism-classic text-gray-700 shadow-neumorphism-concave hover-accent-gradient hover:text-white hover:accent-shadow-inset',
   gradient: 'cssbuttons-io',
 };
 
@@ -42,9 +45,12 @@ export function Button({
         className={clsx(
           variantClasses[variant],
           disabled && 'opacity-50 cursor-not-allowed',
-          'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500',
+          'focus:outline-none focus:ring-2 focus:ring-offset-2',
           className
         )}
+        style={{
+          '--tw-ring-color': 'var(--accent-color)',
+        } as React.CSSProperties}
       >
         <span>{children}</span>
       </button>
@@ -56,12 +62,15 @@ export function Button({
       {...commonProps}
       className={clsx(
         'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200',
-        'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500',
+        'focus:outline-none focus:ring-2 focus:ring-offset-2',
         'disabled:opacity-50 disabled:cursor-not-allowed',
         sizeClasses[size],
         disabled ? 'opacity-50 cursor-not-allowed' : variantClasses[variant],
         className
       )}
+      style={{
+        '--tw-ring-color': 'var(--accent-color)',
+      } as React.CSSProperties}
     >
       {children}
     </button>

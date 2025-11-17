@@ -5,7 +5,7 @@ export function TypographyStories() {
   return (
     <div className="space-y-8">
       {/* Variants */}
-      <Card variant="elevated" padding="lg">
+      <Card padding="lg">
         <Typography variant="h3" className="mb-4">Variants</Typography>
         <div className="space-y-2">
           <Typography variant="h1">Heading 1</Typography>
@@ -21,7 +21,7 @@ export function TypographyStories() {
       </Card>
 
       {/* Colors */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Colors</Typography>
         <div className="space-y-2">
           <Typography variant="body" color="primary">Primary color</Typography>
@@ -32,7 +32,7 @@ export function TypographyStories() {
       </Card>
 
       {/* Weights */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Weights</Typography>
         <div className="space-y-2">
           <Typography variant="body" weight="normal">Normal weight</Typography>

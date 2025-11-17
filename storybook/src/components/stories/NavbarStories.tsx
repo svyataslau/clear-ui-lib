@@ -12,7 +12,7 @@ export function NavbarStories() {
   return (
     <div className="space-y-8">
       {/* Basic Navbar */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Basic Navbar</Typography>
         <div className="border rounded-lg overflow-hidden">
           <Navbar
@@ -23,7 +23,7 @@ export function NavbarStories() {
       </Card>
 
       {/* Navbar with Actions */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Navbar with Actions</Typography>
         <div className="border rounded-lg overflow-hidden">
           <Navbar
@@ -42,7 +42,7 @@ export function NavbarStories() {
       </Card>
 
       {/* Custom Styled Navbar */}
-      <Card variant="elevated" padding="lg">
+      <Card  padding="lg">
         <Typography variant="h3" className="mb-4">Custom Styled Navbar</Typography>
         <div className="border rounded-lg overflow-hidden bg-gradient-to-r from-accent-500 to-accent-600">
           <Navbar
