@@ -33,44 +33,63 @@ Thank you for your interest in contributing to Clear UI! This document provides 
 
 - `npm run dev` - Start development server with watch mode
 - `npm run build` - Build the library
-- `npm run build:prod` - Build for production (minified)
 - `npm run test` - Run tests in watch mode
 - `npm run test:run` - Run tests once
-- `npm run test:coverage` - Run tests with coverage
 - `npm run lint` - Run linting
 - `npm run format` - Format code
 - `npm run type-check` - Run TypeScript type checking
-- `npm run demo` - Start demo application
+- `npm run storybook` - Start component storybook/playground
+- `npm run clean` - Remove build artifacts
 
 ### Adding New Components
 
-1. Create a new component in `src/components/ComponentName/`
+1. Create a new component folder in `src/components/ComponentName/`
 2. Create the following files:
    - `ComponentName.tsx` - Main component
+   - `ComponentName.types.ts` - TypeScript types and interfaces
    - `ComponentName.test.tsx` - Tests
-   - `index.ts` - Export file
-3. Add types to `src/types/index.ts`
-4. Export the component in `src/index.ts`
-5. Add tests and documentation
+   - `index.ts` - Barrel export file
+3. Export the component from `src/components/index.ts`
+4. Add tests and documentation
+5. Add a story in `demo-app/src/components/stories/` for the storybook
 
 ### Component Structure
 
 ```tsx
+// ComponentName.types.ts
+import type { ReactNode, HTMLAttributes } from 'react';
+
+export interface ComponentNameProps extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode;
+  variant?: 'primary' | 'secondary';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  className?: string;
+}
+
 // ComponentName.tsx
-import type { ComponentNameProps } from '../../types';
-import { cn } from '../../utils/classNames';
+import { clsx } from 'clsx';
+import type { ComponentNameProps } from './ComponentName.types';
 
 export function ComponentName({
   children,
+  variant = 'primary',
+  size = 'md',
   className,
   ...props
 }: ComponentNameProps) {
   return (
-    <div className={cn('base-classes', className)} {...props}>
+    <div 
+      className={clsx('base-classes', `variant-${variant}`, `size-${size}`, className)} 
+      {...props}
+    >
       {children}
     </div>
   );
 }
+
+// index.ts
+export { ComponentName } from './ComponentName';
+export type { ComponentNameProps } from './ComponentName.types';
 ```
 
 ### Testing

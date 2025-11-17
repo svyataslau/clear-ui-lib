@@ -1,6 +1,6 @@
 import React from 'react';
-import type { AvatarProps } from '../../types';
 import { clsx } from 'clsx';
+import type { AvatarProps } from './Avatar.types';
 
 const sizeClasses = {
   sm: 'w-8 h-8 text-sm',

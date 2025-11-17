@@ -1,15 +1,17 @@
-# Clear UI Library
+# @clear/ui — Neumorphic React UI Kit
 
-A modern React component library with neumorphic design, using a zero-runtime approach to styles.
+A modern, accessible React component library featuring neumorphic design with zero-runtime CSS. Built with TypeScript, tested with Vitest, and optimized for tree-shaking.
 
 ## Features
 
-- 🎨 **Neumorphic Design** - modern style with soft shadows
-- ⚡ **Zero-runtime CSS** - all styles are compiled into CSS files
-- 🧩 **TypeScript** - full typing for all components
-- 📱 **Responsive** - adaptive design
-- 🎯 **Accessible** - accessibility support
-- 🧪 **Tested** - test coverage
+- 🎨 **Neumorphic Design** - Soft, elegant shadows and depth effects
+- ⚡ **Zero-Runtime CSS** - All styles compile to static CSS, no runtime overhead
+- 🧩 **TypeScript First** - Fully typed API with excellent IntelliSense support
+- 📱 **Responsive** - Mobile-friendly and adaptive layouts
+- ♿ **Accessible** - ARIA compliant with keyboard navigation support
+- 🧪 **Well Tested** - Comprehensive test coverage with 98+ tests
+- 🌳 **Tree-Shakeable** - Import only what you need
+- 📦 **Tiny Bundle** - Optimized build with minimal footprint
 
 ## Installation
 
@@ -17,37 +19,69 @@ A modern React component library with neumorphic design, using a zero-runtime ap
 npm install @clear/ui
 ```
 
-### Demo Application
+Or with yarn/pnpm:
 
 ```bash
-npm run demo
+yarn add @clear/ui
+pnpm add @clear/ui
 ```
+
+### Component Storybook
+
+To explore all components interactively, run the local storybook:
+
+```bash
+npm run storybook
+```
+
+This will start the component playground at `http://localhost:3000`.
 
 ![Demo screenshot](assets/demo.png)
 
-## Usage
+## Quick Start
 
-### Automatic Style Import
+### 1. Import Styles
 
-Styles are automatically imported when using the library. No additional CSS import is required.
-
-### Basic Usage
+Import the CSS file once in your app's entry point:
 
 ```tsx
-import { Button, Input, Card } from '@clear/ui';
+// main.tsx or App.tsx
+import '@clear/ui/styles';
+```
+
+**Note:** Styles are extracted to a single CSS file for optimal performance. This approach ensures zero runtime overhead and better caching.
+
+### 2. Use Components
+
+```tsx
+import { Button, Input, Card, Switch } from '@clear/ui';
 
 function App() {
   return (
-    <div>
-      <Button variant="primary">Click me</Button>
-      <Input placeholder="Enter text..." />
-      <Card>
-        <h2>Card Title</h2>
-        <p>Card content</p>
+    <div className="bg-neumorphism-background min-h-screen p-8">
+      <Card className="p-6 max-w-md">
+        <h2 className="text-2xl font-bold mb-4">Welcome</h2>
+        <Input placeholder="Enter your name..." className="mb-4" />
+        <Button variant="primary" size="lg">
+          Get Started
+        </Button>
       </Card>
     </div>
   );
 }
+```
+
+### 3. With TypeScript
+
+All components are fully typed:
+
+```tsx
+import type { ButtonProps, InputProps } from '@clear/ui';
+
+// TypeScript will provide full autocompletion and type checking
+const MyButton: React.FC<ButtonProps> = (props) => {
+  return <Button {...props} />;
+};
 ```
 
 ## Components
@@ -258,29 +292,6 @@ The library uses a zero-runtime approach to styles:
 - Better performance
 - Smaller bundle size
 
-### CSS Classes
-
-Main CSS classes for neumorphic styles:
-
-```css
-/* Backgrounds */
-.bg-neumorphism-background
-.bg-neumorphism-classic
-
-/* Shadows */
-.shadow-neumorphism
-.shadow-neumorphism-inset
-.shadow-neumorphism-card
-.shadow-neumorphism-input
-.shadow-neumorphism-concave
-
-/* Components */
-.input-base
-.switch-container
-.card
-.cssbuttons-io
-```
-
 ### Manual CSS Import (Optional)
 
 If you need to import CSS manually (for example, for customization), you can use:
@@ -297,16 +308,22 @@ import '@clear/ui/styles';
 npm install
 ```
 
-### Running in Development Mode
+### Running the Component Storybook
 
 ```bash
-npm run dev
+npm run storybook
 ```
 
-### Building
+### Building the Library
 
 ```bash
 npm run build
+```
+
+### Running in Development Mode (watch mode)
+
+```bash
+npm run dev
 ```
 
 ### Tests
@@ -315,10 +332,53 @@ npm run build
 npm test
 ```
 
-## License
+### Type Checking
 
 ```bash
-
+npm run type-check
 ```
 
-MIT
+### Linting and Formatting
+
+```bash
+npm run lint
+npm run format
+```
+
+## Publishing to npm
+
+This library is ready for npm publishing:
+
+```bash
+# Build the library
+npm run build
+
+# Publish to npm (requires npm account)
+npm publish
+```
+
+### Package Contents
+
+The published package includes:
+- `dist/` - Compiled JavaScript (CJS + ESM) and type declarations
+- `dist/styles.css` - Compiled CSS styles
+- `README.md` - Documentation
+- `LICENSE` - MIT license
+
+### Using in Other Projects
+
+Once published, install in any React project:
+
+```bash
+npm install @clear/ui
+```
+
+Then use as shown in the Quick Start section above.
+
+## Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+## License
+
+MIT © Clear UI Team

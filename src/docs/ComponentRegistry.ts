@@ -32,6 +32,7 @@ function getButtonExample() {
         React.createElement(
           'button',
           {
+            type: 'button',
             className:
               'px-4 py-2 bg-accent-500 text-white rounded-lg hover:bg-accent-600',
           },
@@ -40,6 +41,7 @@ function getButtonExample() {
         React.createElement(
           'button',
           {
+            type: 'button',
             className:
               'px-4 py-2 bg-gray-100 text-gray-900 rounded-lg hover:bg-gray-200',
           },
@@ -48,6 +50,7 @@ function getButtonExample() {
         React.createElement(
           'button',
           {
+            type: 'button',
             className:
               'px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50',
           },
@@ -56,6 +59,7 @@ function getButtonExample() {
         React.createElement(
           'button',
           {
+            type: 'button',
             className:
               'px-4 py-2 bg-transparent text-gray-700 rounded-lg hover:bg-gray-100',
           },
@@ -485,6 +489,7 @@ export const componentDocs: ComponentDoc[] = [
           React.createElement(
             'button',
             {
+              type: 'button',
               className:
                 'px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50',
             },
@@ -493,6 +498,7 @@ export const componentDocs: ComponentDoc[] = [
           React.createElement(
             'button',
             {
+              type: 'button',
               className:
                 'px-4 py-2 bg-accent-500 text-white rounded-lg hover:bg-accent-600',
             },
@@ -576,7 +582,7 @@ export const componentDocs: ComponentDoc[] = [
               'Contact'
             )
           ),
-          React.createElement('button', { className: 'md:hidden' }, '☰')
+          React.createElement('button', { type: 'button', className: 'md:hidden' }, '☰')
         )
       )
     ),

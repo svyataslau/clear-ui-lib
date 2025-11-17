@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
-import type { TextareaProps } from '../../types';
 import { clsx } from 'clsx';
+import type { TextareaProps } from './Textarea.types';
 
 const sizeClasses = {
   sm: 'px-3 py-1.5 text-sm',
@@ -26,8 +26,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   }, ref) => {
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       if (onChange) {
-        // Pass event directly - React Hook Form will handle it
-        (onChange as any)(e);
+        // React Hook Form compatibility: try to call with the event
+        // The onChange prop can accept either a value or an event
+        const firstParam = e as unknown;
+        (onChange as (param: unknown) => void)(firstParam);
       }
     };
 
@@ -39,6 +41,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         onChange={handleChange}
         disabled={disabled}
         rows={rows}
+        aria-invalid={error}
+        aria-disabled={disabled}
         className={clsx(
           'w-full rounded-xl bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed',
           sizeClasses[size],

@@ -107,7 +107,7 @@ describe('Navbar', () => {
 
   it('renders with custom actions', () => {
     const customActions = (
-      <button data-testid="custom-action">Custom Action</button>
+      <button type="button" data-testid="custom-action">Custom Action</button>
     );
     
     render(<Navbar links={mockLinks} actions={customActions} />);

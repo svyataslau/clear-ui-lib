@@ -67,8 +67,12 @@ describe('Switch', () => {
       />
     );
     
-    const switchElement = screen.getByTestId('test-switch');
-    expect(switchElement).toHaveAttribute('aria-label', 'Test switch');
+    const switchContainer = screen.getByTestId('test-switch');
+    expect(switchContainer).toBeInTheDocument();
+    
+    // aria-label is on the checkbox input
+    const checkbox = screen.getByRole('checkbox');
+    expect(checkbox).toHaveAttribute('aria-label', 'Test switch');
   });
 
   it('renders with correct structure', () => {

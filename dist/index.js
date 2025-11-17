@@ -45,10 +45,17 @@ const variantClasses$3 = {
 };
 function Button({ children, variant = 'primary', size = 'md', disabled = false, onClick, type = 'button', className, ...props }) {
     const isGradient = variant === 'gradient';
+    const commonProps = {
+        type,
+        disabled,
+        onClick,
+        'aria-disabled': disabled,
+        ...props,
+    };
     if (isGradient) {
-        return (jsxRuntime.jsx("button", { type: type, disabled: disabled, onClick: onClick, className: clsx(variantClasses$3[variant], disabled && 'opacity-50 cursor-not-allowed', className), ...props, children: jsxRuntime.jsx("span", { children: children }) }));
+        return (jsxRuntime.jsx("button", { ...commonProps, className: clsx(variantClasses$3[variant], disabled && 'opacity-50 cursor-not-allowed', 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500', className), children: jsxRuntime.jsx("span", { children: children }) }));
     }
-    return (jsxRuntime.jsx("button", { type: type, disabled: disabled, onClick: onClick, className: clsx('inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed', sizeClasses$3[size], disabled ? 'opacity-50 cursor-not-allowed' : variantClasses$3[variant], className), ...props, children: children }));
+    return (jsxRuntime.jsx("button", { ...commonProps, className: clsx('inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200', 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500', 'disabled:opacity-50 disabled:cursor-not-allowed', sizeClasses$3[size], disabled ? 'opacity-50 cursor-not-allowed' : variantClasses$3[variant], className), children: children }));
 }
 
 const variantClasses$2 = {
@@ -68,11 +75,53 @@ function Card({ children, variant = 'default', padding = 'md', rounded = false, 
     return (jsxRuntime.jsx("div", { className: clsx('transition-all duration-200', rounded ? 'rounded-full' : 'rounded-2xl', variantClasses$2[variant], paddingClasses[padding], className), ...props, children: children }));
 }
 
+const sizeClasses$2 = {
+    sm: 'w-16 h-16',
+    md: 'w-20 h-20',
+    lg: 'w-24 h-24',
+    xl: 'w-32 h-32',
+};
+const variantClasses$1 = {
+    primary: 'bg-neumorphism-background shadow-neumorphism-card transition-all duration-200',
+    concave: 'bg-neumorphism-classic shadow-neumorphism-concave transition-all duration-200',
+};
+function CirclePlate({ children, variant = 'primary', size = 'md', className, ...props }) {
+    return (jsxRuntime.jsx("div", { className: clsx('inline-flex items-center justify-center font-medium rounded-full transition-all duration-200', sizeClasses$2[size], variantClasses$1[variant], className), ...props, children: children }));
+}
+
+const FormField = React.forwardRef(({ label, error, required = false, className, children, htmlFor }, ref) => {
+    // Generate id if not provided
+    const fieldId = htmlFor || `field-${Math.random().toString(36).substr(2, 9)}`;
+    // Clone children and add id to the first input/textarea element
+    const enhancedChildren = React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+            // Check if this is an input or textarea
+            const childType = child.type;
+            const isInputOrTextarea = childType === 'input' ||
+                childType === 'textarea' ||
+                (typeof childType === 'function' &&
+                    ('displayName' in childType &&
+                        (childType.displayName === 'Input' || childType.displayName === 'Textarea')));
+            if (isInputOrTextarea) {
+                return React.cloneElement(child, {
+                    id: fieldId,
+                    ...child.props,
+                });
+            }
+        }
+        return child;
+    });
+    return (jsxRuntime.jsxs("div", { ref: ref, className: clsx('space-y-2', className), children: [label && (jsxRuntime.jsxs("label", { htmlFor: fieldId, className: "block text-sm font-medium text-gray-700", children: [label, required && jsxRuntime.jsx("span", { className: "text-red-500 ml-1", children: "*" })] })), enhancedChildren, error && (jsxRuntime.jsx("p", { className: "text-sm text-red-600", children: error }))] }));
+});
+FormField.displayName = 'FormField';
+
 const Input = React.forwardRef(({ type = 'text', placeholder, value, onChange, disabled = false, error = false, size = 'md', rounded = false, neumorphic = false, className, ...props }, ref) => {
     const handleChange = (e) => {
         if (onChange) {
-            // Pass event directly - React Hook Form will handle it
-            onChange(e);
+            // React Hook Form compatibility: try to call with the event
+            // The onChange prop can accept either a value or an event
+            const firstParam = e;
+            onChange(firstParam);
         }
     };
     const inputClasses = clsx('input-base', {
@@ -87,11 +136,11 @@ const Input = React.forwardRef(({ type = 'text', placeholder, value, onChange, d
         'input-disabled': disabled,
         'input-neumorphic': neumorphic,
     }, className);
-    return (jsxRuntime.jsx("input", { ref: ref, type: type, placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, className: inputClasses, ...props }));
+    return (jsxRuntime.jsx("input", { ref: ref, type: type, placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, "aria-invalid": error, "aria-disabled": disabled, className: inputClasses, ...props }));
 });
 Input.displayName = 'Input';
 
-const sizeClasses$2 = {
+const sizeClasses$1 = {
     sm: 'max-w-md',
     md: 'max-w-lg',
     lg: 'max-w-2xl',
@@ -115,40 +164,30 @@ function Modal({ children, isOpen, onClose, title, size = 'md', className, ...pr
     }, [isOpen, onClose]);
     if (!isOpen)
         return null;
-    return (jsxRuntime.jsxs("div", { className: "fixed inset-0 z-50 flex items-center justify-center", children: [jsxRuntime.jsx("div", { className: "absolute inset-0 bg-black bg-opacity-50 transition-opacity", onClick: onClose }), jsxRuntime.jsxs("div", { className: clsx('relative bg-neumorphism-background rounded-2xl w-full mx-4 max-h-[90vh] overflow-y-auto', sizeClasses$2[size], className), ...props, children: [title && (jsxRuntime.jsxs("div", { className: "flex items-center justify-between p-6 border-b border-gray-200", children: [jsxRuntime.jsx("h2", { className: "text-xl font-semibold text-gray-900", children: title }), jsxRuntime.jsx("button", { onClick: onClose, className: "p-1 text-gray-400 hover:text-gray-600 transition-colors", children: jsxRuntime.jsx("svg", { className: "w-6 h-6", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" }) }) })] })), jsxRuntime.jsx("div", { className: "p-6", children: children })] })] }));
+    return (jsxRuntime.jsxs("div", { className: "fixed inset-0 z-50 flex items-center justify-center", role: "dialog", "aria-modal": "true", "aria-labelledby": title ? 'modal-title' : undefined, children: [jsxRuntime.jsx("div", { className: "absolute inset-0 bg-black bg-opacity-50 transition-opacity", onClick: onClose, "aria-hidden": "true" }), jsxRuntime.jsxs("div", { className: clsx('relative bg-neumorphism-background rounded-2xl w-full mx-4 max-h-[90vh] overflow-y-auto', sizeClasses$1[size], className), ...props, children: [title && (jsxRuntime.jsxs("div", { className: "flex items-center justify-between p-6 border-b border-gray-200", children: [jsxRuntime.jsx("h2", { id: "modal-title", className: "text-xl font-semibold text-gray-900", children: title }), jsxRuntime.jsx("button", { type: "button", onClick: onClose, className: "p-1 text-gray-400 hover:text-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500", "aria-label": "Close modal", children: jsxRuntime.jsxs("svg", { className: "w-6 h-6", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", role: "img", "aria-label": "Close icon", children: [jsxRuntime.jsx("title", { children: "Close" }), jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" })] }) })] })), jsxRuntime.jsx("div", { className: "p-6", children: children })] })] }));
 }
 
 function Navbar({ logo, links = [], actions, className, ...props }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-    return (jsxRuntime.jsxs("nav", { className: clsx('bg-neumorphism-background shadow-neumorphism-card sticky top-0 z-40', className), ...props, children: [jsxRuntime.jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: jsxRuntime.jsxs("div", { className: "flex justify-between items-center h-16", children: [jsxRuntime.jsx("div", { className: "flex-shrink-0", children: logo }), jsxRuntime.jsx("div", { className: "hidden md:block", children: jsxRuntime.jsx("div", { className: "ml-10 flex items-baseline space-x-4", children: links.map((link, index) => (jsxRuntime.jsx("a", { href: link.href, className: clsx('px-3 py-2 rounded-md text-sm font-medium transition-all duration-200', link.active
+    return (jsxRuntime.jsxs("nav", { className: clsx('bg-neumorphism-background shadow-neumorphism-card sticky top-0 z-40', className), ...props, children: [jsxRuntime.jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: jsxRuntime.jsxs("div", { className: "flex justify-between items-center h-16", children: [jsxRuntime.jsx("div", { className: "flex-shrink-0", children: logo }), jsxRuntime.jsx("div", { className: "hidden md:block", children: jsxRuntime.jsx("div", { className: "ml-10 flex items-baseline space-x-4", children: links.map((link) => (jsxRuntime.jsx("a", { href: link.href, className: clsx('px-3 py-2 rounded-md text-sm font-medium transition-all duration-200', link.active
                                         ? 'bg-gradient-to-r from-purple-400 to-purple-600 text-white'
-                                        : 'text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white'), children: link.label }, index))) }) }), jsxRuntime.jsx("div", { className: "hidden md:block", children: jsxRuntime.jsx("div", { className: "ml-4 flex items-center space-x-4", children: actions }) }), jsxRuntime.jsx("div", { className: "md:hidden", children: jsxRuntime.jsxs("button", { onClick: () => setIsMobileMenuOpen(!isMobileMenuOpen), className: "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent-500", children: [jsxRuntime.jsx("span", { className: "sr-only", children: "Open main menu" }), isMobileMenuOpen ? (jsxRuntime.jsx("svg", { className: "block h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" }) })) : (jsxRuntime.jsx("svg", { className: "block h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M4 6h16M4 12h16M4 18h16" }) }))] }) })] }) }), isMobileMenuOpen && (jsxRuntime.jsx("div", { className: "md:hidden", children: jsxRuntime.jsxs("div", { className: "px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-neumorphism-background border-t border-gray-200", children: [links.map((link, index) => (jsxRuntime.jsx("a", { href: link.href, className: clsx('block px-3 py-2 rounded-md text-base font-medium transition-all duration-200', link.active
+                                        : 'text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white'), children: link.label }, link.href))) }) }), jsxRuntime.jsx("div", { className: "hidden md:block", children: jsxRuntime.jsx("div", { className: "ml-4 flex items-center space-x-4", children: actions }) }), jsxRuntime.jsx("div", { className: "md:hidden", children: jsxRuntime.jsxs("button", { type: "button", onClick: () => setIsMobileMenuOpen(!isMobileMenuOpen), className: "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent-500", children: [jsxRuntime.jsx("span", { className: "sr-only", children: "Open main menu" }), isMobileMenuOpen ? (jsxRuntime.jsxs("svg", { className: "block h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", role: "img", "aria-label": "Close menu icon", children: [jsxRuntime.jsx("title", { children: "Close menu" }), jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" })] })) : (jsxRuntime.jsxs("svg", { className: "block h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", role: "img", "aria-label": "Open menu icon", children: [jsxRuntime.jsx("title", { children: "Open menu" }), jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M4 6h16M4 12h16M4 18h16" })] }))] }) })] }) }), isMobileMenuOpen && (jsxRuntime.jsx("div", { className: "md:hidden", children: jsxRuntime.jsxs("div", { className: "px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-neumorphism-background border-t border-gray-200", children: [links.map((link) => (jsxRuntime.jsx("a", { href: link.href, className: clsx('block px-3 py-2 rounded-md text-base font-medium transition-all duration-200', link.active
                                 ? 'bg-gradient-to-r from-purple-400 to-purple-600 text-white'
-                                : 'text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white'), onClick: () => setIsMobileMenuOpen(false), children: link.label }, index))), actions && (jsxRuntime.jsx("div", { className: "pt-4 pb-3 border-t border-gray-200", children: jsxRuntime.jsx("div", { className: "flex items-center space-x-4", children: actions }) }))] }) }))] }));
+                                : 'text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white'), onClick: () => setIsMobileMenuOpen(false), children: link.label }, link.href))), actions && (jsxRuntime.jsx("div", { className: "pt-4 pb-3 border-t border-gray-200", children: jsxRuntime.jsx("div", { className: "flex items-center space-x-4", children: actions }) }))] }) }))] }));
 }
 
-const Switch = React.forwardRef(({ checked = false, onChange, disabled = false, className = '', id, ...props }, ref) => {
+function NeumorphicProvider({ children }) {
+    return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: children }));
+}
+
+const Switch = React.forwardRef(({ checked = false, onChange, disabled = false, className = '', id, 'aria-label': ariaLabel, ...props }, ref) => {
     const handleChange = (e) => {
         onChange?.(e.target.checked);
     };
     const inputId = id || `switch-${Math.random().toString(36).substr(2, 9)}`;
-    return (jsxRuntime.jsxs("div", { className: clsx('switch-container', className), ...props, children: [jsxRuntime.jsx("input", { ref: ref, id: inputId, type: "checkbox", className: "toggle-checkbox", checked: checked, onChange: handleChange, disabled: disabled }), jsxRuntime.jsx("label", { htmlFor: inputId, className: "switch", children: jsxRuntime.jsx("div", { className: clsx('toggle', checked && 'toggle-checked'), children: jsxRuntime.jsx("div", { className: clsx('led', checked && 'led-checked', disabled && 'led-disabled') }) }) })] }));
+    return (jsxRuntime.jsxs("div", { className: clsx('switch-container', className), role: "switch", "aria-checked": checked, tabIndex: 0, ...props, children: [jsxRuntime.jsx("input", { ref: ref, id: inputId, type: "checkbox", className: "toggle-checkbox", checked: checked, onChange: handleChange, disabled: disabled, "aria-label": ariaLabel, "aria-checked": checked }), jsxRuntime.jsx("label", { htmlFor: inputId, className: "switch", children: jsxRuntime.jsx("div", { className: clsx('toggle', checked && 'toggle-checked'), children: jsxRuntime.jsx("div", { className: clsx('led', checked && 'led-checked', disabled && 'led-disabled') }) }) })] }));
 });
 Switch.displayName = 'Switch';
-
-const sizeClasses$1 = {
-    sm: 'w-16 h-16',
-    md: 'w-20 h-20',
-    lg: 'w-24 h-24',
-    xl: 'w-32 h-32',
-};
-const variantClasses$1 = {
-    primary: 'bg-neumorphism-background shadow-neumorphism-card transition-all duration-200',
-    concave: 'bg-neumorphism-classic shadow-neumorphism-concave transition-all duration-200',
-};
-function CirclePlate({ children, variant = 'primary', size = 'md', className, ...props }) {
-    return (jsxRuntime.jsx("div", { className: clsx('inline-flex items-center justify-center font-medium rounded-full transition-all duration-200', sizeClasses$1[size], variantClasses$1[variant], className), ...props, children: children }));
-}
 
 const sizeClasses = {
     sm: 'px-3 py-1.5 text-sm',
@@ -162,11 +201,13 @@ const sizeClasses = {
 const Textarea = React.forwardRef(({ placeholder, value, onChange, disabled = false, error = false, rows = 4, size = 'md', className, ...props }, ref) => {
     const handleChange = (e) => {
         if (onChange) {
-            // Pass event directly - React Hook Form will handle it
-            onChange(e);
+            // React Hook Form compatibility: try to call with the event
+            // The onChange prop can accept either a value or an event
+            const firstParam = e;
+            onChange(firstParam);
         }
     };
-    return (jsxRuntime.jsx("textarea", { ref: ref, placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, rows: rows, className: clsx('w-full rounded-xl bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed', sizeClasses[size], error && 'shadow-[inset_6px_6px_4px_#ffebee,inset_-6px_-6px_4px_#ffffff]', className), ...props }));
+    return (jsxRuntime.jsx("textarea", { ref: ref, placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, rows: rows, "aria-invalid": error, "aria-disabled": disabled, className: clsx('w-full rounded-xl bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed', sizeClasses[size], error && 'shadow-[inset_6px_6px_4px_#ffebee,inset_-6px_-6px_4px_#ffffff]', className), ...props }));
 });
 Textarea.displayName = 'Textarea';
 
@@ -206,44 +247,47 @@ const variantElements = {
 };
 function Typography({ children, variant = 'body', color = 'primary', weight, className, ...props }) {
     const Element = variantElements[variant];
-    return (jsxRuntime.jsx(Element, { className: clsx(variantClasses[variant], colorClasses[color], weight && weightClasses[weight], className), ...props, children: children }));
+    const combinedClassName = clsx(variantClasses[variant], colorClasses[color], weight && weightClasses[weight], className);
+    return React.createElement(Element, { className: combinedClassName, ...props }, children);
 }
 
-const FormField = React.forwardRef(({ label, error, required = false, className, children, htmlFor }, ref) => {
-    // Генерируем id если не предоставлен
-    const fieldId = htmlFor || `field-${Math.random().toString(36).substr(2, 9)}`;
-    // Клонируем children и добавляем id к первому input/textarea элементу
-    const enhancedChildren = React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-            // Проверяем, является ли это input или textarea
-            if (child.type === 'input' || child.type === 'textarea' ||
-                (typeof child.type === 'function' &&
-                    (child.type.displayName === 'Input' || child.type.displayName === 'Textarea'))) {
-                return React.cloneElement(child, {
-                    id: fieldId,
-                    ...child.props,
-                });
-            }
-        }
-        return child;
+const defaultTheme = {
+    accentColor: '#a855f7', // purple-500
+    accentColorLight: '#d8b4fe', // purple-300
+    accentColorDark: '#7c3aed', // purple-700
+};
+const ThemeContext = React.createContext(undefined);
+function ThemeProvider({ children, initialTheme = {} }) {
+    const [theme, setThemeState] = React.useState({
+        ...defaultTheme,
+        ...initialTheme,
     });
-    return (jsxRuntime.jsxs("div", { ref: ref, className: clsx('space-y-2', className), children: [label && (jsxRuntime.jsxs("label", { htmlFor: fieldId, className: "block text-sm font-medium text-gray-700", children: [label, required && jsxRuntime.jsx("span", { className: "text-red-500 ml-1", children: "*" })] })), enhancedChildren, error && (jsxRuntime.jsx("p", { className: "text-sm text-red-600", children: error }))] }));
-});
-FormField.displayName = 'FormField';
-
-function NeumorphicProvider({ children }) {
-    return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: children }));
+    const setTheme = React.useCallback((newTheme) => {
+        setThemeState(prev => ({ ...prev, ...newTheme }));
+    }, []);
+    return (jsxRuntime.jsx(ThemeContext.Provider, { value: { theme, setTheme }, children: children }));
+}
+function useTheme() {
+    const context = React.useContext(ThemeContext);
+    if (context === undefined) {
+        throw new Error('useTheme must be used within a ThemeProvider');
+    }
+    return context;
 }
 
 // Function to get component examples
 function getButtonExample() {
     return React.createElement('div', { className: 'p-8 space-y-8' }, React.createElement('div', null, React.createElement('h2', { className: 'text-2xl font-bold mb-4' }, 'Button Variants'), React.createElement('div', { className: 'flex flex-wrap gap-4' }, React.createElement('button', {
+        type: 'button',
         className: 'px-4 py-2 bg-accent-500 text-white rounded-lg hover:bg-accent-600',
     }, 'Primary'), React.createElement('button', {
+        type: 'button',
         className: 'px-4 py-2 bg-gray-100 text-gray-900 rounded-lg hover:bg-gray-200',
     }, 'Secondary'), React.createElement('button', {
+        type: 'button',
         className: 'px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50',
     }, 'Outline'), React.createElement('button', {
+        type: 'button',
         className: 'px-4 py-2 bg-transparent text-gray-700 rounded-lg hover:bg-gray-100',
     }, 'Ghost'))));
 }
@@ -522,8 +566,10 @@ const componentDocs = [
         examples: React.createElement('div', { className: 'p-8 space-y-4' }, React.createElement('div', {
             className: 'bg-white border border-gray-200 rounded-xl p-6 max-w-md',
         }, React.createElement('h3', { className: 'text-xl font-semibold mb-4' }, 'Modal Example'), React.createElement('p', { className: 'text-gray-600 mb-4' }, 'This is an example of a modal dialog.'), React.createElement('div', { className: 'flex justify-end space-x-3' }, React.createElement('button', {
+            type: 'button',
             className: 'px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50',
         }, 'Cancel'), React.createElement('button', {
+            type: 'button',
             className: 'px-4 py-2 bg-accent-500 text-white rounded-lg hover:bg-accent-600',
         }, 'Confirm')))),
         props: [
@@ -563,7 +609,7 @@ const componentDocs = [
     {
         name: 'Navbar',
         description: 'A responsive navigation bar component with mobile menu, logo, navigation links, and actions.',
-        examples: React.createElement('div', { className: 'p-8 space-y-4' }, React.createElement('nav', { className: 'bg-white border-b border-gray-200 px-4 py-3' }, React.createElement('div', { className: 'flex items-center justify-between' }, React.createElement('div', { className: 'flex items-center' }, React.createElement('span', { className: 'text-xl font-bold' }, 'Logo')), React.createElement('div', { className: 'hidden md:flex space-x-4' }, React.createElement('a', { href: '#', className: 'text-gray-600 hover:text-gray-900' }, 'Home'), React.createElement('a', { href: '#', className: 'text-gray-600 hover:text-gray-900' }, 'About'), React.createElement('a', { href: '#', className: 'text-gray-600 hover:text-gray-900' }, 'Contact')), React.createElement('button', { className: 'md:hidden' }, '☰')))),
+        examples: React.createElement('div', { className: 'p-8 space-y-4' }, React.createElement('nav', { className: 'bg-white border-b border-gray-200 px-4 py-3' }, React.createElement('div', { className: 'flex items-center justify-between' }, React.createElement('div', { className: 'flex items-center' }, React.createElement('span', { className: 'text-xl font-bold' }, 'Logo')), React.createElement('div', { className: 'hidden md:flex space-x-4' }, React.createElement('a', { href: '#', className: 'text-gray-600 hover:text-gray-900' }, 'Home'), React.createElement('a', { href: '#', className: 'text-gray-600 hover:text-gray-900' }, 'About'), React.createElement('a', { href: '#', className: 'text-gray-600 hover:text-gray-900' }, 'Contact')), React.createElement('button', { type: 'button', className: 'md:hidden' }, '☰')))),
         props: [
             {
                 name: 'logo',
@@ -645,30 +691,6 @@ function getComponent(name) {
 
 function DocGenerator({ components, title = '@clear/ui Documentation', description = 'Complete component library documentation', }) {
     return (jsxRuntime.jsxs("div", { className: "min-h-screen bg-gray-50", children: [jsxRuntime.jsx("div", { className: "bg-white border-b border-gray-200 sticky top-0 z-50", children: jsxRuntime.jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: jsxRuntime.jsxs("div", { className: "py-6", children: [jsxRuntime.jsx(Typography, { variant: "h1", className: "text-3xl font-bold text-gray-900", children: title }), jsxRuntime.jsx(Typography, { variant: "subtitle", color: "secondary", className: "mt-2", children: description })] }) }) }), jsxRuntime.jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8", children: jsxRuntime.jsx("div", { className: "space-y-12", children: components.map((component) => (jsxRuntime.jsxs("section", { id: component.name.toLowerCase(), children: [jsxRuntime.jsxs("div", { className: "mb-8", children: [jsxRuntime.jsx(Typography, { variant: "h2", className: "text-2xl font-bold text-gray-900 mb-2", children: component.name }), jsxRuntime.jsx(Typography, { variant: "body", color: "secondary", children: component.description })] }), jsxRuntime.jsxs(Card, { variant: "default", padding: "lg", className: "mb-8", children: [jsxRuntime.jsx(Typography, { variant: "h4", className: "mb-4", children: "Examples" }), component.examples] }), component.props && component.props.length > 0 && (jsxRuntime.jsxs(Card, { variant: "outlined", padding: "lg", children: [jsxRuntime.jsx(Typography, { variant: "h4", className: "mb-4", children: "Props" }), jsxRuntime.jsx("div", { className: "overflow-x-auto", children: jsxRuntime.jsxs("table", { className: "min-w-full divide-y divide-gray-200", children: [jsxRuntime.jsx("thead", { className: "bg-gray-50", children: jsxRuntime.jsxs("tr", { children: [jsxRuntime.jsx("th", { className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Prop" }), jsxRuntime.jsx("th", { className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Type" }), jsxRuntime.jsx("th", { className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Required" }), jsxRuntime.jsx("th", { className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Default" }), jsxRuntime.jsx("th", { className: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider", children: "Description" })] }) }), jsxRuntime.jsx("tbody", { className: "bg-white divide-y divide-gray-200", children: component.props.map((prop) => (jsxRuntime.jsxs("tr", { children: [jsxRuntime.jsx("td", { className: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900", children: prop.name }), jsxRuntime.jsx("td", { className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-mono", children: prop.type }), jsxRuntime.jsx("td", { className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500", children: prop.required ? (jsxRuntime.jsx("span", { className: "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800", children: "Required" })) : (jsxRuntime.jsx("span", { className: "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800", children: "Optional" })) }), jsxRuntime.jsx("td", { className: "px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-mono", children: prop.defaultValue || '-' }), jsxRuntime.jsx("td", { className: "px-6 py-4 text-sm text-gray-500", children: prop.description })] }, prop.name))) })] }) })] }))] }, component.name))) }) })] }));
-}
-
-const defaultTheme = {
-    accentColor: '#a855f7', // purple-500
-    accentColorLight: '#d8b4fe', // purple-300
-    accentColorDark: '#7c3aed', // purple-700
-};
-const ThemeContext = React.createContext(undefined);
-function ThemeProvider({ children, initialTheme = {} }) {
-    const [theme, setThemeState] = React.useState({
-        ...defaultTheme,
-        ...initialTheme,
-    });
-    const setTheme = React.useCallback((newTheme) => {
-        setThemeState(prev => ({ ...prev, ...newTheme }));
-    }, []);
-    return (jsxRuntime.jsx(ThemeContext.Provider, { value: { theme, setTheme }, children: children }));
-}
-function useTheme() {
-    const context = React.useContext(ThemeContext);
-    if (context === undefined) {
-        throw new Error('useTheme must be used within a ThemeProvider');
-    }
-    return context;
 }
 
 exports.Avatar = Avatar;

@@ -25,18 +25,6 @@ By default, `'Courier New', Courier, monospace` is used for all elements.
 .bg-neumorphism-classic     /* #f0f0f3 */
 ```
 
-### Neumorphic Shadow Styles
-
-```css
-.shadow-neumorphism         /* Main shadow */
-.shadow-neumorphism-inset   /* Inset shadow */
-.shadow-neumorphism-pressed /* Pressed shadow */
-.shadow-neumorphism-card    /* Card shadow */
-.shadow-neumorphism-input   /* Input shadow */
-.shadow-neumorphism-convex  /* Convex shadow */
-.shadow-neumorphism-concave /* Concave shadow */
-```
-
 ### Custom Component Styles
 
 #### Input Styles
@@ -82,14 +70,14 @@ Complete set of styles for the Switch component including:
 }
 ```
 
-## Usage in Project
+## Usage in Your Project
 
 ### 1. Installation
 ```bash
 npm install @clear/ui
 ```
 
-### 2. Import Styles in Main File
+### 2. Import Styles and Components
 ```tsx
 // App.tsx or main.tsx
 import '@clear/ui/styles';

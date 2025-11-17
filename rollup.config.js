@@ -6,6 +6,7 @@ import { dts } from 'rollup-plugin-dts';
 import postcss from 'rollup-plugin-postcss';
 
 export default [
+  // Main bundle configuration
   {
     input: 'src/index.ts',
     output: [
@@ -13,6 +14,7 @@ export default [
         file: 'dist/index.js',
         format: 'cjs',
         sourcemap: true,
+        exports: 'named',
       },
       {
         file: 'dist/index.esm.js',
@@ -32,13 +34,19 @@ export default [
           path: './postcss.config.cjs',
         },
       }),
-      typescript({ tsconfig: './tsconfig.json' }),
+      typescript({ 
+        tsconfig: './tsconfig.json',
+        declaration: false,
+        declarationMap: false,
+      }),
     ],
-    external: ['react', 'react-dom'],
+    external: ['react', 'react-dom', 'react/jsx-runtime'],
   },
+  // Type declarations configuration
   {
     input: 'src/index.types.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     plugins: [dts()],
+    external: [/\.css$/],
   },
 ];

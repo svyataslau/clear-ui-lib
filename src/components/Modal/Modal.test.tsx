@@ -48,7 +48,9 @@ describe('Modal', () => {
     
     // Find the backdrop by looking for the element with the backdrop classes
     const backdrop = document.querySelector('[class*="absolute inset-0 bg-black"]');
-    fireEvent.click(backdrop!);
+    if (backdrop) {
+      fireEvent.click(backdrop);
+    }
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
@@ -106,7 +108,7 @@ describe('Modal', () => {
         <div>
           <h3>Subtitle</h3>
           <p>Description</p>
-          <button>Action</button>
+          <button type="button">Action</button>
         </div>
       </Modal>
     );

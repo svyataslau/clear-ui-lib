@@ -310,20 +310,6 @@ import type {
 
 ## CSS Classes
 
-### Neumorphism Shadows
-
-```css
-/* External shadows */
-.shadow-neumorphism
-.shadow-neumorphism-card
-.shadow-neumorphism-convex
-
-/* Internal shadows */
-.shadow-neumorphism-inset
-.shadow-neumorphism-input
-.shadow-neumorphism-concave
-```
-
 ### Background Colors
 
 ```css

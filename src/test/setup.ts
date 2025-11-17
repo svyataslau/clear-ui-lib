@@ -13,7 +13,13 @@ Object.defineProperty(window, 'getComputedStyle', {
 });
 
 // Mock ResizeObserver
-(globalThis as any).ResizeObserver = vi.fn().mockImplementation(() => ({
+interface ResizeObserverMock {
+  observe: ReturnType<typeof vi.fn>;
+  unobserve: ReturnType<typeof vi.fn>;
+  disconnect: ReturnType<typeof vi.fn>;
+}
+
+(globalThis as unknown as { ResizeObserver: unknown }).ResizeObserver = vi.fn().mockImplementation((): ResizeObserverMock => ({
   observe: vi.fn(),
   unobserve: vi.fn(),
   disconnect: vi.fn(),

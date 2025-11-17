@@ -1,6 +1,6 @@
-import type React from 'react';
-import type { TypographyProps } from '../../types';
+import React from 'react';
 import { clsx } from 'clsx';
+import type { TypographyProps } from './Typography.types';
 
 const variantClasses = {
   h1: 'text-4xl font-bold',
@@ -48,19 +48,18 @@ export function Typography({
   className,
   ...props
 }: TypographyProps) {
-  const Element = variantElements[variant] as keyof React.JSX.IntrinsicElements;
+  const Element = variantElements[variant];
 
-  return (
-    <Element
-      className={clsx(
-        variantClasses[variant],
-        colorClasses[color],
-        weight && weightClasses[weight],
-        className
-      )}
-      {...(props as any)}
-    >
-      {children}
-    </Element>
+  const combinedClassName = clsx(
+    variantClasses[variant],
+    colorClasses[color],
+    weight && weightClasses[weight],
+    className
+  );
+
+  return React.createElement(
+    Element,
+    { className: combinedClassName, ...props },
+    children
   );
 }

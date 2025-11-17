@@ -1,5 +1,5 @@
-import type { ButtonProps } from '../../types';
 import { clsx } from 'clsx';
+import type { ButtonProps } from './Button.types';
 
 const sizeClasses = {
   sm: 'px-3 py-1.5 text-sm',
@@ -27,18 +27,24 @@ export function Button({
 }: ButtonProps) {
   const isGradient = variant === 'gradient';
 
+  const commonProps = {
+    type,
+    disabled,
+    onClick,
+    'aria-disabled': disabled,
+    ...props,
+  };
+
   if (isGradient) {
     return (
       <button
-        type={type}
-        disabled={disabled}
-        onClick={onClick}
+        {...commonProps}
         className={clsx(
           variantClasses[variant],
           disabled && 'opacity-50 cursor-not-allowed',
+          'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500',
           className
         )}
-        {...props}
       >
         <span>{children}</span>
       </button>
@@ -47,16 +53,15 @@ export function Button({
 
   return (
     <button
-      type={type}
-      disabled={disabled}
-      onClick={onClick}
+      {...commonProps}
       className={clsx(
-        'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed',
+        'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200',
+        'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500',
+        'disabled:opacity-50 disabled:cursor-not-allowed',
         sizeClasses[size],
         disabled ? 'opacity-50 cursor-not-allowed' : variantClasses[variant],
         className
       )}
-      {...props}
     >
       {children}
     </button>

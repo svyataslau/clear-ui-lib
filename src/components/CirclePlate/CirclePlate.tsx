@@ -1,5 +1,5 @@
-import type { CirclePlateProps } from '../../types';
 import { clsx } from 'clsx';
+import type { CirclePlateProps } from './CirclePlate.types';
 
 const sizeClasses = {
   sm: 'w-16 h-16',

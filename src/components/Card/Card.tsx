@@ -1,5 +1,5 @@
-import type { CardProps } from '../../types';
 import { clsx } from 'clsx';
+import type { CardProps } from './Card.types';
 
 const variantClasses = {
   default: 'bg-neumorphism-background shadow-neumorphism-card',

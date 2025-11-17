@@ -21,6 +21,7 @@ build/
 .idea/
 *.swp
 *.swo
+.cursorrules
 
 # OS files
 .DS_Store

@@ -5,13 +5,17 @@
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.esm.js",
       "require": "./dist/index.js"
     },
-    "./styles": "./dist/styles.css"
+    "./styles": "./dist/styles.css",
+    "./package.json": "./package.json"
   },
   "keywords": [
     "react",
@@ -33,9 +37,10 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "npm run clean && rollup -c",
     "dev": "rollup -c --watch",
-    "demo": "cd demo-app && npm run dev",
+    "storybook": "cd demo-app && npm run dev",
+    "storybook:build": "cd demo-app && npm run build",
     "prepublishOnly": "npm run build",
     "type-check": "tsc --noEmit",
     "lint": "biome lint src",

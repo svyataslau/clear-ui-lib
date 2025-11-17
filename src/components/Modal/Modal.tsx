@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import type { ModalProps } from '../../types';
 import { clsx } from 'clsx';
+import type { ModalProps } from './Modal.types';
 
 const sizeClasses = {
   sm: 'max-w-md',
@@ -39,11 +39,17 @@ export function Modal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={title ? 'modal-title' : undefined}
+    >
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black bg-opacity-50 transition-opacity"
         onClick={onClose}
+        aria-hidden="true"
       />
 
       {/* Modal */}
@@ -58,17 +64,22 @@ export function Modal({
         {/* Header */}
         {title && (
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
+            <h2 id="modal-title" className="text-xl font-semibold text-gray-900">{title}</h2>
             <button
+              type="button"
               onClick={onClose}
-              className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+              className="p-1 text-gray-400 hover:text-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500"
+              aria-label="Close modal"
             >
               <svg
                 className="w-6 h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                role="img"
+                aria-label="Close icon"
               >
+                <title>Close</title>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"

@@ -1,2 +1,2 @@
 export { CirclePlate } from './CirclePlate';
-export type { CirclePlateProps } from '../../types';
+export type { CirclePlateProps, Size } from './CirclePlate.types';

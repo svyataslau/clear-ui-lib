@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
-import type { InputProps } from '../../types';
 import { clsx } from 'clsx';
+import type { InputProps } from './Input.types';
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({
@@ -18,8 +18,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   }, ref) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
-        // Pass event directly - React Hook Form will handle it
-        (onChange as any)(e);
+        // React Hook Form compatibility: try to call with the event
+        // The onChange prop can accept either a value or an event
+        const firstParam = e as unknown;
+        (onChange as (param: unknown) => void)(firstParam);
       }
     };
 
@@ -48,6 +50,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         value={value}
         onChange={handleChange}
         disabled={disabled}
+        aria-invalid={error}
+        aria-disabled={disabled}
         className={inputClasses}
         {...props}
       />

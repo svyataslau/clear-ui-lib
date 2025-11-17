@@ -1,15 +1,6 @@
 import { forwardRef, Children, cloneElement, isValidElement } from 'react';
-import type { ReactNode } from 'react';
 import { clsx } from 'clsx';
-
-export interface FormFieldProps {
-  label?: string;
-  error?: string;
-  required?: boolean;
-  className?: string;
-  children: ReactNode;
-  htmlFor?: string;
-}
+import type { FormFieldProps } from './FormField.types';
 
 export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
   ({ label, error, required = false, className, children, htmlFor }, ref) => {
@@ -20,9 +11,15 @@ export const FormField = forwardRef<HTMLDivElement, FormFieldProps>(
     const enhancedChildren = Children.map(children, (child) => {
       if (isValidElement(child)) {
         // Check if this is an input or textarea
-        if (child.type === 'input' || child.type === 'textarea' || 
-            (typeof child.type === 'function' && 
-             ((child.type as any).displayName === 'Input' || (child.type as any).displayName === 'Textarea'))) {
+        const childType = child.type;
+        const isInputOrTextarea = 
+          childType === 'input' || 
+          childType === 'textarea' || 
+          (typeof childType === 'function' && 
+           ('displayName' in childType && 
+            (childType.displayName === 'Input' || childType.displayName === 'Textarea')));
+        
+        if (isInputOrTextarea) {
           return cloneElement(child, {
             id: fieldId,
             ...child.props,

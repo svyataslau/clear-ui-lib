@@ -1,20 +1,12 @@
-// Components
-export { Avatar } from './components/Avatar';
-export { Button } from './components/Button';
-export { Card } from './components/Card';
-export { Input } from './components/Input';
-export { Modal } from './components/Modal';
-export { Navbar } from './components/Navbar';
-export { Switch } from './components/Switch';
-export { CirclePlate } from './components/CirclePlate';
-export { Textarea } from './components/Textarea';
-export { Typography } from './components/Typography';
-export { FormField } from './components/FormField';
-export { NeumorphicProvider } from './components/NeumorphicProvider';
+// Component exports
+export * from './components';
 
+// Context and theme exports
+export { ThemeProvider, useTheme, defaultTheme } from './context/ThemeContext';
+export type { ThemeConfig } from './context/ThemeContext';
 
+// Documentation exports (for advanced usage)
 export type { ComponentDoc } from './docs';
-// Documentation
 export {
   componentDocs,
   DocGenerator,
@@ -22,27 +14,9 @@ export {
   getComponent,
   registerComponent,
 } from './docs';
-// Types
-export type {
-  AvatarProps,
-  BaseComponentProps,
-  ButtonProps,
-  CardProps,
-  CirclePlateProps,
-  Color,
-  InputProps,
-  ModalProps,
-  NavbarProps,
-  Size,
-  SwitchProps,
-  TextareaProps,
-  TypographyProps,
-  Variant,
-  ThemeConfig,
-  FormFieldProps,
-} from './types';
-// Utils
-export { ThemeProvider, useTheme, defaultTheme } from './context/ThemeContext';
+
+// Common types re-export for convenience
+export type { BaseComponentProps, Size, Variant, Color } from './types';
 
 // Styles - automatically imported when using the library
 import './styles/index.css';

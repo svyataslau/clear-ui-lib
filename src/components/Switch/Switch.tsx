@@ -1,9 +1,9 @@
 import { forwardRef } from 'react';
-import type { SwitchProps } from '../../types';
 import { clsx } from 'clsx';
+import type { SwitchProps } from './Switch.types';
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
-  ({ checked = false, onChange, disabled = false, className = '', id, ...props }, ref) => {
+  ({ checked = false, onChange, disabled = false, className = '', id, 'aria-label': ariaLabel, ...props }, ref) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       onChange?.(e.target.checked);
     };
@@ -13,6 +13,9 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     return (
       <div
         className={clsx('switch-container', className)}
+        role="switch"
+        aria-checked={checked}
+        tabIndex={0}
         {...props}
       >
         <input
@@ -23,6 +26,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
           checked={checked}
           onChange={handleChange}
           disabled={disabled}
+          aria-label={ariaLabel}
+          aria-checked={checked}
         />
         <label 
           htmlFor={inputId}

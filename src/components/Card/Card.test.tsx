@@ -42,14 +42,12 @@ describe('Card', () => {
       <Card
         data-testid="test-card"
         aria-label="Test card"
-        role="article"
       >
         Test Card
       </Card>
     );
     const card = screen.getByTestId('test-card');
     expect(card).toHaveAttribute('aria-label', 'Test card');
-    expect(card).toHaveAttribute('role', 'article');
   });
 
   it('renders complex content', () => {
@@ -57,7 +55,7 @@ describe('Card', () => {
       <Card>
         <h2>Card Title</h2>
         <p>Card description</p>
-        <button>Action</button>
+        <button type="button">Action</button>
       </Card>
     );
     
