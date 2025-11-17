@@ -38,9 +38,9 @@ const sizeClasses$3 = {
     xl: 'px-8 py-4 text-xl',
 };
 const variantClasses$3 = {
-    primary: 'bg-neumorphism-background text-gray-700 shadow-neumorphism-card hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white transition-all duration-200',
-    ghost: 'bg-transparent text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white transition-all duration-200',
-    concave: 'bg-neumorphism-classic text-gray-700 shadow-neumorphism-concave hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white hover:shadow-[inset_-6px_-6px_4px_#d8b4fe,inset_6px_6px_4px_#ffffff] transition-all duration-200',
+    primary: 'bg-neumorphism-background text-gray-700 shadow-neumorphism-card hover-accent-gradient hover:text-white',
+    ghost: 'bg-transparent text-gray-600 hover-accent-gradient hover:text-white',
+    concave: 'bg-neumorphism-classic text-gray-700 shadow-neumorphism-concave hover-accent-gradient hover:text-white hover:accent-shadow-inset',
     gradient: 'cssbuttons-io',
 };
 function Button({ children, variant = 'primary', size = 'md', disabled = false, onClick, type = 'button', className, ...props }) {
@@ -53,9 +53,13 @@ function Button({ children, variant = 'primary', size = 'md', disabled = false, 
         ...props,
     };
     if (isGradient) {
-        return (jsxRuntime.jsx("button", { ...commonProps, className: clsx(variantClasses$3[variant], disabled && 'opacity-50 cursor-not-allowed', 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500', className), children: jsxRuntime.jsx("span", { children: children }) }));
+        return (jsxRuntime.jsx("button", { ...commonProps, className: clsx(variantClasses$3[variant], disabled && 'opacity-50 cursor-not-allowed', 'focus:outline-none focus:ring-2 focus:ring-offset-2', className), style: {
+                '--tw-ring-color': 'var(--accent-color)',
+            }, children: jsxRuntime.jsx("span", { children: children }) }));
     }
-    return (jsxRuntime.jsx("button", { ...commonProps, className: clsx('inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200', 'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500', 'disabled:opacity-50 disabled:cursor-not-allowed', sizeClasses$3[size], disabled ? 'opacity-50 cursor-not-allowed' : variantClasses$3[variant], className), children: children }));
+    return (jsxRuntime.jsx("button", { ...commonProps, className: clsx('inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200', 'focus:outline-none focus:ring-2 focus:ring-offset-2', 'disabled:opacity-50 disabled:cursor-not-allowed', sizeClasses$3[size], disabled ? 'opacity-50 cursor-not-allowed' : variantClasses$3[variant], className), style: {
+            '--tw-ring-color': 'var(--accent-color)',
+        }, children: children }));
 }
 
 const variantClasses$2 = {
@@ -164,16 +168,18 @@ function Modal({ children, isOpen, onClose, title, size = 'md', className, ...pr
     }, [isOpen, onClose]);
     if (!isOpen)
         return null;
-    return (jsxRuntime.jsxs("div", { className: "fixed inset-0 z-50 flex items-center justify-center", role: "dialog", "aria-modal": "true", "aria-labelledby": title ? 'modal-title' : undefined, children: [jsxRuntime.jsx("div", { className: "absolute inset-0 bg-black bg-opacity-50 transition-opacity", onClick: onClose, "aria-hidden": "true" }), jsxRuntime.jsxs("div", { className: clsx('relative bg-neumorphism-background rounded-2xl w-full mx-4 max-h-[90vh] overflow-y-auto', sizeClasses$1[size], className), ...props, children: [title && (jsxRuntime.jsxs("div", { className: "flex items-center justify-between p-6 border-b border-gray-200", children: [jsxRuntime.jsx("h2", { id: "modal-title", className: "text-xl font-semibold text-gray-900", children: title }), jsxRuntime.jsx("button", { type: "button", onClick: onClose, className: "p-1 text-gray-400 hover:text-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500", "aria-label": "Close modal", children: jsxRuntime.jsxs("svg", { className: "w-6 h-6", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", role: "img", "aria-label": "Close icon", children: [jsxRuntime.jsx("title", { children: "Close" }), jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" })] }) })] })), jsxRuntime.jsx("div", { className: "p-6", children: children })] })] }));
+    return (jsxRuntime.jsxs("div", { className: "fixed inset-0 z-50 flex items-center justify-center", role: "dialog", "aria-modal": "true", "aria-labelledby": title ? 'modal-title' : undefined, children: [jsxRuntime.jsx("div", { className: "absolute inset-0 bg-black bg-opacity-50 transition-opacity", onClick: onClose, "aria-hidden": "true" }), jsxRuntime.jsxs("div", { className: clsx('relative bg-neumorphism-background rounded-2xl w-full mx-4 max-h-[90vh] overflow-y-auto', sizeClasses$1[size], className), ...props, children: [title && (jsxRuntime.jsxs("div", { className: "flex items-center justify-between p-6 border-b border-gray-200", children: [jsxRuntime.jsx("h2", { id: "modal-title", className: "text-xl font-semibold text-gray-900", children: title }), jsxRuntime.jsx("button", { type: "button", onClick: onClose, className: "p-1 text-gray-400 hover:text-gray-600 transition-colors focus:outline-none focus:ring-2 modal-close-btn", style: {
+                                    '--tw-ring-color': 'var(--accent-color)',
+                                }, "aria-label": "Close modal", children: jsxRuntime.jsxs("svg", { className: "w-6 h-6", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", role: "img", "aria-label": "Close icon", children: [jsxRuntime.jsx("title", { children: "Close" }), jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" })] }) })] })), jsxRuntime.jsx("div", { className: "p-6", children: children })] })] }));
 }
 
 function Navbar({ logo, links = [], actions, className, ...props }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
     return (jsxRuntime.jsxs("nav", { className: clsx('bg-neumorphism-background shadow-neumorphism-card sticky top-0 z-40', className), ...props, children: [jsxRuntime.jsx("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8", children: jsxRuntime.jsxs("div", { className: "flex justify-between items-center h-16", children: [jsxRuntime.jsx("div", { className: "flex-shrink-0", children: logo }), jsxRuntime.jsx("div", { className: "hidden md:block", children: jsxRuntime.jsx("div", { className: "ml-10 flex items-baseline space-x-4", children: links.map((link) => (jsxRuntime.jsx("a", { href: link.href, className: clsx('px-3 py-2 rounded-md text-sm font-medium transition-all duration-200', link.active
-                                        ? 'bg-gradient-to-r from-purple-400 to-purple-600 text-white'
-                                        : 'text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white'), children: link.label }, link.href))) }) }), jsxRuntime.jsx("div", { className: "hidden md:block", children: jsxRuntime.jsx("div", { className: "ml-4 flex items-center space-x-4", children: actions }) }), jsxRuntime.jsx("div", { className: "md:hidden", children: jsxRuntime.jsxs("button", { type: "button", onClick: () => setIsMobileMenuOpen(!isMobileMenuOpen), className: "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent-500", children: [jsxRuntime.jsx("span", { className: "sr-only", children: "Open main menu" }), isMobileMenuOpen ? (jsxRuntime.jsxs("svg", { className: "block h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", role: "img", "aria-label": "Close menu icon", children: [jsxRuntime.jsx("title", { children: "Close menu" }), jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" })] })) : (jsxRuntime.jsxs("svg", { className: "block h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", role: "img", "aria-label": "Open menu icon", children: [jsxRuntime.jsx("title", { children: "Open menu" }), jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M4 6h16M4 12h16M4 18h16" })] }))] }) })] }) }), isMobileMenuOpen && (jsxRuntime.jsx("div", { className: "md:hidden", children: jsxRuntime.jsxs("div", { className: "px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-neumorphism-background border-t border-gray-200", children: [links.map((link) => (jsxRuntime.jsx("a", { href: link.href, className: clsx('block px-3 py-2 rounded-md text-base font-medium transition-all duration-200', link.active
-                                ? 'bg-gradient-to-r from-purple-400 to-purple-600 text-white'
-                                : 'text-gray-600 hover:bg-gradient-to-r hover:from-purple-400 hover:to-purple-600 hover:text-white'), onClick: () => setIsMobileMenuOpen(false), children: link.label }, link.href))), actions && (jsxRuntime.jsx("div", { className: "pt-4 pb-3 border-t border-gray-200", children: jsxRuntime.jsx("div", { className: "flex items-center space-x-4", children: actions }) }))] }) }))] }));
+                                        ? 'nav-link-active'
+                                        : 'nav-link-inactive'), children: link.label }, link.href))) }) }), jsxRuntime.jsx("div", { className: "hidden md:block", children: jsxRuntime.jsx("div", { className: "ml-4 flex items-center space-x-4", children: actions }) }), jsxRuntime.jsx("div", { className: "md:hidden", children: jsxRuntime.jsxs("button", { type: "button", onClick: () => setIsMobileMenuOpen(!isMobileMenuOpen), className: "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent-500", children: [jsxRuntime.jsx("span", { className: "sr-only", children: "Open main menu" }), isMobileMenuOpen ? (jsxRuntime.jsxs("svg", { className: "block h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", role: "img", "aria-label": "Close menu icon", children: [jsxRuntime.jsx("title", { children: "Close menu" }), jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M6 18L18 6M6 6l12 12" })] })) : (jsxRuntime.jsxs("svg", { className: "block h-6 w-6", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", role: "img", "aria-label": "Open menu icon", children: [jsxRuntime.jsx("title", { children: "Open menu" }), jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M4 6h16M4 12h16M4 18h16" })] }))] }) })] }) }), isMobileMenuOpen && (jsxRuntime.jsx("div", { className: "md:hidden", children: jsxRuntime.jsxs("div", { className: "px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-neumorphism-background border-t border-gray-200", children: [links.map((link) => (jsxRuntime.jsx("a", { href: link.href, className: clsx('block px-3 py-2 rounded-md text-base font-medium transition-all duration-200', link.active
+                                ? 'nav-link-active'
+                                : 'nav-link-inactive'), onClick: () => setIsMobileMenuOpen(false), children: link.label }, link.href))), actions && (jsxRuntime.jsx("div", { className: "pt-4 pb-3 border-t border-gray-200", children: jsxRuntime.jsx("div", { className: "flex items-center space-x-4", children: actions }) }))] }) }))] }));
 }
 
 function NeumorphicProvider({ children }) {
@@ -207,7 +213,7 @@ const Textarea = React.forwardRef(({ placeholder, value, onChange, disabled = fa
             onChange(firstParam);
         }
     };
-    return (jsxRuntime.jsx("textarea", { ref: ref, placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, rows: rows, "aria-invalid": error, "aria-disabled": disabled, className: clsx('w-full rounded-xl bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed', sizeClasses[size], error && 'textarea-shadow-error', className), ...props }));
+    return (jsxRuntime.jsx("textarea", { ref: ref, placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, rows: rows, "aria-invalid": error, "aria-disabled": disabled, className: clsx('w-full rounded-xl bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed', sizeClasses[size], error && 'textarea-shadow-error', className), ...props }));
 });
 Textarea.displayName = 'Textarea';
 
@@ -263,8 +269,22 @@ function ThemeProvider({ children, initialTheme = {} }) {
         ...initialTheme,
     });
     const setTheme = React.useCallback((newTheme) => {
-        setThemeState(prev => ({ ...prev, ...newTheme }));
+        setThemeState((prev) => ({ ...prev, ...newTheme }));
     }, []);
+    // Initialize CSS variables on mount and sync theme to CSS variables
+    React.useEffect(() => {
+        const root = document.documentElement;
+        root.style.setProperty('--accent-color', theme.accentColor);
+        root.style.setProperty('--accent-color-light', theme.accentColorLight);
+        root.style.setProperty('--accent-color-dark', theme.accentColorDark);
+        console.log('🎨 Theme CSS variables updated:', {
+            '--accent-color': theme.accentColor,
+            '--accent-color-light': theme.accentColorLight,
+            '--accent-color-dark': theme.accentColorDark,
+        });
+        // Force re-render by updating a data attribute
+        root.setAttribute('data-theme-accent', theme.accentColor);
+    }, [theme]);
     return (jsxRuntime.jsx(ThemeContext.Provider, { value: { theme, setTheme }, children: children }));
 }
 function useTheme() {

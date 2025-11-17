@@ -41,6 +41,7 @@
     "dev": "rollup -c --watch",
     "storybook": "cd storybook && npm run dev",
     "storybook:build": "cd storybook && npm run build",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run build",
     "type-check": "tsc --noEmit",
     "lint": "biome lint src",
