@@ -6,7 +6,7 @@ yarn-error.log*
 storybook/node_modules
 
 # Build outputs
-# dist/ - Commented out to include dist in repository for npm install from git
+dist/
 build/
 *.tsbuildinfo
 

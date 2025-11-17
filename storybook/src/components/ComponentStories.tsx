@@ -8,7 +8,6 @@ import { NavbarStories } from './stories/NavbarStories';
 import { SwitchStories } from './stories/SwitchStories';
 import { TextareaStories } from './stories/TextareaStories';
 import { CirclePlateStories } from './stories/CirclePlateStories';
-import { ThemeDemo } from './ThemeDemo';
 
 interface ComponentStoriesProps {
   selectedComponent: string;
@@ -37,8 +36,6 @@ export function ComponentStories({ selectedComponent }: ComponentStoriesProps) {
         return <TextareaStories />;
       case 'CirclePlate':
         return <CirclePlateStories />;
-      case 'ThemeDemo':
-        return <ThemeDemo />;
       default:
         return null;
     }
