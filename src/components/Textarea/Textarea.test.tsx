@@ -52,7 +52,7 @@ describe('Textarea', () => {
 
   it('applies error state correctly', () => {
     render(<Textarea error placeholder="Error textarea" />);
-    expect(screen.getByPlaceholderText('Error textarea')).toHaveClass('shadow-[inset_6px_6px_4px_#ffebee,inset_-6px_-6px_4px_#ffffff]');
+    expect(screen.getByPlaceholderText('Error textarea')).toHaveClass('textarea-shadow-error');
   });
 
   it('applies custom className', () => {

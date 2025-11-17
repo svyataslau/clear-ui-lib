@@ -1,6 +1,6 @@
-# @clear/ui Demo Application
+# @clear/ui Storybook
 
-A modern, interactive demo application for the @clear/ui component library, built with React, TypeScript, Vite, and Tailwind CSS.
+A modern, interactive storybook for the @clear/ui component library, built with React, TypeScript, Vite, and Tailwind CSS.
 
 ## Features
 
@@ -42,22 +42,27 @@ npm run dev
 ## Project Structure
 
 ```
-demo-app/
+storybook/
 ├── src/
 │   ├── components/
 │   │   ├── stories/          # Component story files
 │   │   ├── ComponentStories.tsx
 │   │   └── Sidebar.tsx
 │   ├── styles/
-│   │   └── index.css         # Global styles and Tailwind
+│   │   └── index.css         # Local Tailwind config (storybook-specific)
 │   ├── App.tsx               # Main application
-│   └── main.tsx              # Entry point
+│   └── main.tsx              # Entry point (imports ../src/styles/index.css)
 ├── index.html
 ├── package.json
 ├── tailwind.config.js
 ├── tsconfig.json
 └── vite.config.ts
 ```
+
+## Architecture
+
+Storybook uses styles directly from the library source (`../src/styles/index.css`) - **единый источник истины**.
+This means any changes to component styles are immediately visible in Storybook without rebuilding.
 
 ## Components Available
 

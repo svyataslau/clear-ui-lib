@@ -207,7 +207,7 @@ const Textarea = React.forwardRef(({ placeholder, value, onChange, disabled = fa
             onChange(firstParam);
         }
     };
-    return (jsxRuntime.jsx("textarea", { ref: ref, placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, rows: rows, "aria-invalid": error, "aria-disabled": disabled, className: clsx('w-full rounded-xl bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed', sizeClasses[size], error && 'shadow-[inset_6px_6px_4px_#ffebee,inset_-6px_-6px_4px_#ffffff]', className), ...props }));
+    return (jsxRuntime.jsx("textarea", { ref: ref, placeholder: placeholder, value: value, onChange: handleChange, disabled: disabled, rows: rows, "aria-invalid": error, "aria-disabled": disabled, className: clsx('w-full rounded-xl bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed', sizeClasses[size], error && 'textarea-shadow-error', className), ...props }));
 });
 Textarea.displayName = 'Textarea';
 

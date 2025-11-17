@@ -1,7 +1,7 @@
 {
-  "name": "@clear/ui-demo",
+  "name": "@clear/ui-storybook",
   "version": "1.0.0",
-  "description": "Demo application for @clear/ui library",
+  "description": "Storybook application for @clear/ui library",
   "type": "module",
   "scripts": {
     "dev": "vite",

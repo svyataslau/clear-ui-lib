@@ -17,7 +17,7 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@clear/ui": ["../dist/index.d.ts"]
+      "@clear/ui": ["../src/index.ts"]
     }
   },
   "include": ["src"],

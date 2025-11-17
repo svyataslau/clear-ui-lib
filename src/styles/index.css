@@ -88,8 +88,12 @@
   .input-shadow-default {
     box-shadow: inset 8px 8px 16px #d1d9e6, inset -8px -8px 16px #ffffff;
   }
-  
+
   .input-shadow-error {
+    box-shadow: inset 6px 6px 4px #ffebee, inset -6px -6px 4px #ffffff;
+  }
+  
+  .textarea-shadow-error {
     box-shadow: inset 6px 6px 4px #ffebee, inset -6px -6px 4px #ffffff;
   }
   

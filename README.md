@@ -36,6 +36,8 @@ npm run storybook
 
 This will start the component playground at `http://localhost:3000`.
 
+**Architecture Note:** Storybook imports styles directly from `src/styles/index.css` (not from `dist/`), providing a single source of truth and instant hot-reload for style changes.
+
 ![Demo screenshot](assets/demo.png)
 
 ## Quick Start

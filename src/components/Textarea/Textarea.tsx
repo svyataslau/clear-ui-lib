@@ -46,7 +46,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         className={clsx(
           'w-full rounded-xl bg-neumorphism-background text-gray-700 placeholder-gray-500 transition-all duration-200 focus:outline-none shadow-neumorphism-input disabled:opacity-50 disabled:cursor-not-allowed',
           sizeClasses[size],
-          error && 'shadow-[inset_6px_6px_4px_#ffebee,inset_-6px_-6px_4px_#ffffff]',
+          error && 'textarea-shadow-error',
           className
         )}
         {...props}

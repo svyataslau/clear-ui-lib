@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-// Импортируем локальные стили ПЕРЕД стилями библиотеки для переопределения
+// Импортируем стили напрямую из источника - единый источник истины
+import '../../src/styles/index.css';
 import './styles/index.css';
-import '@clear/ui/styles';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
