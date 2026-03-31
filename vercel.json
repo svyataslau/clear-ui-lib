@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm install && cd storybook && npm install && npm run build",
+  "buildCommand": "npm install --ignore-scripts && cd storybook && npm install && npm run build",
   "outputDirectory": "storybook/dist",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
