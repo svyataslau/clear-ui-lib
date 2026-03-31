@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npm install && cd storybook && npm install && npm run build",
+  "outputDirectory": "storybook/dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
