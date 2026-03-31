@@ -4,6 +4,17 @@ const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: [
+          '"Helvetica Light"',
+          '"HelveticaNeue-Light"',
+          '"Helvetica Neue Light"',
+          '"Helvetica Neue"',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
+      },
       colors: {
         neumorphism: {
           light: '#ffffff',

@@ -8,7 +8,15 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'courier': ['Courier New', 'Courier', 'monospace'],
+        sans: [
+          '"Helvetica Light"',
+          '"HelveticaNeue-Light"',
+          '"Helvetica Neue Light"',
+          '"Helvetica Neue"',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
       },
       colors: {
         primary: {
