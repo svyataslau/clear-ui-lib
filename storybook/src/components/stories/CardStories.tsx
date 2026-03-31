@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card, Typography, Button } from '@clear/ui';
 
 export function CardStories() {
@@ -74,7 +73,7 @@ export function CardStories() {
                 Feature three
               </li>
             </ul>
-            <Button variant="outline">View Details</Button>
+            <Button variant="ghost">View Details</Button>
           </Card>
         </div>
       </Card>

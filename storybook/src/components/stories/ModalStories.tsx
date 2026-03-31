@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Modal, Button, Card, Typography } from '@clear/ui';
 
 export function ModalStories() {
@@ -32,7 +32,7 @@ export function ModalStories() {
             clicking outside the modal, or pressing the Escape key.
           </Typography>
           <div className="flex justify-end space-x-3 pt-4">
-            <Button variant="outline" onClick={() => setIsOpen(false)}>
+            <Button variant="ghost" onClick={() => setIsOpen(false)}>
               Cancel
             </Button>
             <Button onClick={() => setIsOpen(false)}>

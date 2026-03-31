@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Card, Typography } from '@clear/ui';
 
 export function ButtonStories() {
@@ -45,7 +44,7 @@ export function ButtonStories() {
             <Button onClick={() => alert('Button clicked!')}>
               Click me!
             </Button>
-            <Button variant="outline" onClick={() => console.log('Outline clicked')}>
+            <Button variant="ghost" onClick={() => console.log('Ghost clicked')}>
               Console log
             </Button>
           </div>

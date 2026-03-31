@@ -1,4 +1,3 @@
-import React from 'react';
 import { Avatar, Card, Typography } from '@clear/ui';
 
 export function AvatarStories() {

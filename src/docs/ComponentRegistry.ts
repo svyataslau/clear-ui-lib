@@ -80,7 +80,7 @@ export const componentDocs: ComponentDoc[] = [
     props: [
       {
         name: 'variant',
-        type: "'primary' | 'secondary' | 'outline' | 'ghost'",
+        type: "'primary' | 'ghost' | 'concave' | 'gradient'",
         required: false,
         defaultValue: "'primary'",
         description: 'The visual style variant of the button',

@@ -1,4 +1,3 @@
-import React from 'react';
 import { CirclePlate, Card, Typography } from '@clear/ui';
 
 export function CirclePlateStories() {

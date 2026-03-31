@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Textarea, Card, Typography } from '@clear/ui';
 
 export function TextareaStories() {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navbar, Card, Typography } from '@clear/ui';
 
 export function NavbarStories() {
